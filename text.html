@@ -1,0 +1,188 @@
+<!-- 将所有0移除到末尾，并且不占用多的空间，解法1, -->
+<!-- ** -->
+<!-- <script id="leetcode-283">
+  var nums = [2, 4, 0, 0, 3, 5, 5, 0, 6, 0, 0];
+  for (let i = 0; i < (nums.length - 1); i++) {
+    let stop = true;
+    console.log('当前检测到：', nums[i])
+    if (i == 8) {
+      alert(`当前数据是:${nums[i]}`)
+    }
+    if (nums[i] === 0 && stop) {
+      for (let j = i + 1; j < nums.length; j++) {
+        if (nums[j] !== 0 && stop) {
+          nums[i] = nums[j];
+          nums[j] = 0;
+          stop = false;
+        }
+      }
+    }
+    console.log(nums)
+  }
+</script> -->
+
+<!-- 将所有0移除到末尾，并且不占用多的空间，解法2 -->
+<!-- *** -->
+<!-- <script id="leetcode-283">
+  var nums = [2, 4, 0, 0, 3, 5, 5, 0, 6, 0, 0];
+  let total = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      nums[total] = nums[i];
+      total++;
+    }
+  }
+  for (let i = total; i < nums.length; i++) {
+    nums[i] = 0;
+  }
+</script> -->
+
+<!-- 判断括号是否成对出现 -->
+<!-- *** -->
+<!-- <script id="leetcode-20">
+  let str = '[][{}{()({)';  //字符串
+  let result = true;
+  const dev = {
+    '{': '}',
+    '(': ')',
+    '[': ']',
+  }
+  let demo = [];
+  let check = ['(', '{', '['];
+  for (i in str) {
+    if (check.indexOf(str[i]) > -1) {
+      demo.push(str[i]);
+    } else {
+      const peak = demo.pop();//不是正括号的时候直接移除
+      if (str[i] !== dev[peak]) {
+        result = false; //当前的反括号和前一个正括号不匹配的时候直接返回false
+      }
+    }
+  }
+    if(demo.length >0 ) {
+        result = false;
+    }
+    return result;
+</script> -->
+
+<!-- 给定若干个四位数，求出其中满足以下条件的数的个数
+     个位数上的数字减去千位数上的数字，再减去百位数上的数字
+     再减去十位数上的数字的结果大于零。 -->
+<!-- ** -->
+<!-- <script id="ch0105/26">
+  let str = '1234 1349 6119 2123 5017';
+  let count = 0;
+  let b = str.split(' ');
+  for (let j = 0; j < b.length; j++) {
+    let num = []
+    let c = b[j];
+    for (i in c) {
+      num[i] = c[i];
+    }
+    if (num[3] - num[2] - num[1] - num[0] > 0) {
+      count++;
+    }
+  }
+</script> -->
+<!--给定一个数，从1到这个数出现多少个1 -->
+<!-- ** -->
+<!-- <script id="ch0105/40">
+  let str = 2467;
+  let count = 1;
+  if (str >= 10) {
+    for (let i = 10; i <= str; i++) {
+      let num = i.toString();
+      for (j in num) {
+        if (num[j] === '1') {
+          count++;
+        }
+      }
+    }
+  }
+</script> -->
+
+
+<!--给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+解题思路，就是使用两个指针，一个cur用来指向当前不重复的数字的位置，一个next用来向下搜索不重复的数字的位置
+一开始都指向第一个数字，两个指针指向同一个位置，所以next加一向下搜索，直到找到下一个不与cur相等的数字，
+让cur后面的一个数字改变为next指向的位置，然后重复向下寻找，最后cur的数字加一就是当前新数组的长度 -->
+<!-- ** -->
+<!-- <script id="ch0105/40">
+  let nums = [1, 2, 3, 3, 4, 4, 4, 5];
+  let cur = 0;
+  for (let next = 0; next < nums.length; next++) {
+    if (nums[cur] !== nums[next]) {
+      cur++;
+      nums[cur] = nums[next];
+    }
+  }
+  return cur + 1;
+</script> -->
+
+<!--
+  给定两个有序整数数组 nums1 和 nums2，将 nums2 合并到 nums1 中，使得 num1 成为一个有序数组。
+  说明:
+  初始化 nums1 和 nums2 的元素数量分别为 m 和 n。
+  你可以假设 nums1 有足够的空间（空间大小大于或等于 m + n）来保存 nums2 中的元素。
+  这里理解题意很重要，两个都是有序整数数组，假设都是从小到大的，解题原地修改,
+  这里有好几种写法，以下算是复杂度比较低但是逻辑比较绕的
+ -->
+<!-- *** -->
+<!-- <script id="88">
+  let nums1 = [4, 6, 8, 9, 0, 0, 0, 0, 0];
+  let nums2 = [1, 2, 3, 4, 5];
+  let m = 4;
+  let n = 5;
+  let cur = nums1.length - 1;
+  while (cur >= 0) {
+    if (m < 0) {
+      nums1[cur--] = nums2[--n];
+      continue;
+    }
+    if (n < 0) {
+      nums1[cur--] = nums1[--m];
+      continue;
+    }
+    if (nums1[m - 1] > nums2[n - 1]) {
+      nums1[cur--] = nums1[--m];
+    } else {
+      nums1[cur--] = nums2[--n];
+    }
+    console.log(nums1)
+  }
+</script> -->
+
+<!--
+给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+说明: 叶子节点是指没有子节点的节点。
+ -->
+<!-- *** -->
+<!-- <script id="104">
+  var maxDepth = function (root) {
+    let num = root.length;
+    if (num !== 0 && num !== 1) {
+      return Math.ceil(Math.log2(num));
+    } else {
+      return num;
+    }
+  };
+  console.log(maxDepth([3, 9, 20, null, null, 15, 7]))
+  先不做
+</script> -->
+
+
+
+<!-- 7: 输入一个数，输出其是否是7的倍数或各个位上是否有7（25：NO，27：YES，21：YES)
+sort: 输入3个数，按从小到大顺序输出
+narcissistic: 输入一个数判断其是否为水仙花数，输出"YES"/"NO"
+narcissistics: 输出1000以内的水仙花数
+palindrom: 输入一个数，判断其是否为一个一个回文数"YES"/"NO"
+weekday: 输入年份与月份，输出这此年此月的第一天为星期几（0对应周日，1对应周一）
+complete-number: 输入一个数判断其是否为完数，输出"YES"/"NO"
+complete-numbers: 输出1000以内的完数
+prime: 输入一个数判断其是否为素数数，输出"YES"/"NO"
+primes: 输出100以内的素数
+itob: 输入一个数，输出其字符串形式
+lcf&lcm: 输入两个数，分别输出它们的最大公约数和最小公倍数
+sqrt: 输入一个数，输出其平方根，精确到小数点后3位 -->

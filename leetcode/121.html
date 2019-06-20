@@ -1,0 +1,62 @@
+<!--
+给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
+如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。
+注意你不能在买入股票前卖出股票。
+ -->
+<!-- *** -->
+<script id="leetcode-121">
+  const prices = [7, 1, 5, 3, 6, 4];
+  var maxProfit = function (prices) {
+    //第一个解法，max为最大差距数，mim为最小数，从第二天开始算
+    //如果说，今天的数，小于之前的数，就让最小的数变成今天的数，
+    //如果说，今天的数，大于之前最小的数，最小数不动，比较差值，取最大的那个值记录，再到明天进行判断。
+    /*
+    let max = 0;
+    let min = prices[0];
+    for (let i = 1; i < prices.length; i++) {
+      if (prices[i] > min) {
+        max = Math.max(max, prices[i] - min);
+      } else {
+        min = Math.min(min, prices[i]);
+      }
+    }
+    return max;
+    */
+    //第二个解法，是两次遍历，求最大值
+    /*
+    let profit = 0;
+    for (let i = 0; i < prices.length; i++) {
+      for (let j = i; j < prices.length; j++) {
+        if (prices[j] > prices[i]) {
+          profit = Math.max(profit, (prices[j] - prices[i]))
+        }
+      }
+    }
+    return profit;
+    */
+    /*
+    let min = prices[0];
+    let profit = 0;
+    for (let i = 1; i < prices.length; i++) {
+      if (prices[i] > prices[i - 1]) {
+        profit = Math.max(profit, prices[i] - min);
+      } else {
+        min = Math.min(min, prices[i]);;
+      }
+    }
+    return profit;
+    */
+    //这里假设不限制一次的话，尽可能多买多卖，求最大收益
+    //那么这里的做法保持一个原则叫做，低买高卖，只要画出数字的图形变化图，就知道
+    //只要每一天在降价的时候买入，等大于买入价的时候卖出去，卖出后再买入，等大于当前数据的时候卖出去就能保证盈利最大化。
+
+    let price = 0;
+    for (let i = 1; i < prices.length; i++) {
+      if (prices[i] > prices[i - 1]) {
+        price = price + prices[i] - prices[i - 1];
+      }
+    }
+    return price;
+  };
+  console.log(maxProfit(prices))
+</script>

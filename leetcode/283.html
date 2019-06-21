@@ -1,0 +1,38 @@
+<!-- 将所有0移除到末尾，并且不占用多的空间，解法1, -->
+<!-- ** -->
+<!-- <script id="leetcode-283">
+  var nums = [2, 4, 0, 0, 3, 5, 5, 0, 6, 0, 0];
+  for (let i = 0; i < (nums.length - 1); i++) {
+    let stop = true;
+    console.log('当前检测到：', nums[i])
+    if (i == 8) {
+      alert(`当前数据是:${nums[i]}`)
+    }
+    if (nums[i] === 0 && stop) {
+      for (let j = i + 1; j < nums.length; j++) {
+        if (nums[j] !== 0 && stop) {
+          nums[i] = nums[j];
+          nums[j] = 0;
+          stop = false;
+        }
+      }
+    }
+    console.log(nums)
+  }
+</script> -->
+
+<!-- 将所有0移除到末尾，并且不占用多的空间，解法2 -->
+<!-- *** -->
+<script id="leetcode-283">
+  var nums = [2, 4, 0, 0, 3, 5, 5, 0, 6, 0, 0];
+  let total = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      nums[total] = nums[i];
+      total++;
+    }
+  }
+  for (let i = total; i < nums.length; i++) {
+    nums[i] = 0;
+  }
+</script>

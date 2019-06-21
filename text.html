@@ -190,4 +190,382 @@ sqrt: 输入一个数，输出其平方根，精确到小数点后3位
 只需要计算a的n/2次方后再平方一次即可
 当n为奇数时，计算a的(n-1)/2次方的值平方后再乘以a即可
 依次类推。
+作业：给定一个数，输出其5进制形式。
+
  -->
+
+<script id="leetcode-104">
+  function getCharFromDigit(n) {
+    switch (digit) {
+      case 0: return '0';
+      case 1: return '1';
+      case 2: return '2';
+      case 3: return '3';
+      case 4: return '4';
+      case 5: return '5';
+      case 6: return '6';
+      case 7: return '7';
+      case 8: return '8';
+      case 9: return '9';
+    }
+  }
+  function itob(n) {
+    var str = ''
+    while (n > 0) {
+      var digit = n % 10
+      str = str + getCharFromDigit(n)
+      n = (n - digit) / 10
+    }
+    return str
+  }
+</script>
+
+
+
+<script id="leetcode-104">
+  for (var a = 0; a < 7; a++) {
+    for (var b = 0; b < 7; b++) {
+      for (var c = 0; c < 7; c++) {
+        var base7 = a * 49 + b * 7 + c
+        var base9 = c * 81 + b * 9 + a
+        if (base9 == base7) {
+          console.log(base7, '' + a + b + c, '' + c + b + a)
+        }
+      }
+    }
+  }
+</script>
+
+
+<script id="leetcode-104">
+  function sqrt(n) {
+    var x = 2
+    x = x - (x * x - n) / (2 * x)
+    x = x - (x * x - n) / (2 * x)
+    x = x - (x * x - n) / (2 * x)
+    x = x - (x * x - n) / (2 * x)
+    return x
+  }
+</script>
+
+
+<script id="leetcode-104">
+  var isCompleteNumer = function (n) {
+    var sum = 1
+    var sqrt_n = Math.floor(Math.sqrt(n))
+    for (var i = 2; i <= sqrt_n; i++) {
+      if (n % i == 0) {
+        if (i == n / i) {//平方根
+          sum += i
+        } else {//非平方根
+          sum += i + (n / i)
+        }
+      }
+    }
+    return sum == n
+  }
+
+  var isCompleteNumer3 = function (n) {
+    var sum = 1
+    var sqrt_n = Math.floor(Math.sqrt(n))
+    for (var i = 2; i < sqrt_n; i++) {
+      if (n % i == 0) {
+        sum += i + (n / i)
+      }
+    }
+    if (sqrt_n * sqrt_n == n && sqrt_n !== n) {
+      sum += sqrt_n
+    }
+    return sum == n
+  }
+
+
+  var isCompleteNumer2 = function (n) {
+    var sum = 1
+    for (var i = 2; i < n; i++) {
+      if (n % i == 0) {
+        sum += i
+      }
+    }
+    return sum == n
+  }
+</script>
+
+
+<script id="回文">
+  var isPalindrom = function (n) {
+    var width = getDigitWidth(n)
+    for (var i = 1; i <= n / 2; i++) {
+      var right = Math.floor(n / power(10, i - 1)) % 10
+      var left = Math.floor(n / power(10, width - i)) % 10
+      if (right !== left) {
+        return false
+      }
+    }
+    return true
+  }
+
+
+  var isPalindrom2 = function (n) {
+    var sum = 0
+    var m = n
+    while (n > 0) {
+      var digit = n % 10
+      sum = sum * 10 + digit
+      n = (n - digit) / 10
+    }
+    return sum == m
+  }
+</script>
+
+
+<script id="leetcode-104">
+
+  /**
+   * 返回数值m在十进制下的位宽
+   */
+  var getDigitWidth = function (m) {
+    var width = 0
+    if (m == 0) {
+      return 1
+    }
+    while (m > 0) {
+      width++
+      var digit = m % 10
+      m = (m - digit) / 10
+    }
+    return width
+  }
+
+  /**
+   * 返回a的n次方，n为整数
+   */
+  var power = function (a, n) {
+    var result = 1
+
+    for (var i = 0; i < n; i++) {
+      result *= a
+    }
+
+    return result
+  }
+
+  /**
+   * 判断数值n是否为一个水仙花数
+   */
+  var isNarcissistic = function (n) {
+    var width = getDigitWidth(n)
+    var m = n
+    var sum = 0
+    while (n > 0) {
+      var digit = n % 10
+      sum += power(digit, width)
+      n = (n - digit) / 10
+    }
+    if (sum == m) {
+      return true
+    }
+    return false
+  }
+  var printNarcissisticsBelow10000 = function () {
+    for (var i = 1; i < 10000; i++) {
+      if (isNarcissistic(i)) {
+        console.log(i)
+      }
+    }
+  }
+  printNarcissisticsBelow10000()
+</script>
+
+
+<script id="leetcode-104">
+  for (var i = 1; i < 10000; i++) {
+    var n = i
+    var m = n
+    // 153
+    var width = 0
+    while (m > 0) {
+      width++
+      var digit = m % 10
+      m = (m - digit) / 10
+    }
+    m = n
+    var sum = 0
+    while (m > 0) {
+      var digit = m % 10
+      var product = 1
+      for (var i = 0; i < width; i++) {
+        product *= digit
+      }
+      sum += product
+      m = (m - digit) / 10
+    }
+    if (sum == n) {
+      console.log(n)
+    } else {
+      //console.log('NO')
+    }
+  }
+</script>
+
+<script id="leetcode-104">
+  var isPrime = function (n) {
+    if (n < 2) {
+      return false
+    }
+    var sqrt_n = Math.floor(Math.sqrt(n))
+    for (var i = 2; i <= sqrt_n; i++) {
+      if (n % i == 0) {
+        return false
+      }
+    }
+    return true
+  }
+</script>
+
+<script id="leetcode-104">
+  var isRelatedWith7 = function (n) {
+    if (n % 7 == 0) {
+      return true
+    } else {
+      while (n > 0) {
+        var digit = n % 10
+        if (digit == 7) {
+          return true
+        }
+        n = (n - digit) / 10
+      }
+      return false
+    }
+  }
+  var getNumber = function (hint) {
+    return +prompt(hint)
+  }
+  var num = getNumber('请输入')
+  if (isRelatedWith7(num)) {
+    console.log('YES')
+  } else {
+    console.log('NO')
+  }
+</script>
+
+<script id="leetcode-104">
+  var n = +prompt()
+  var m = +prompt()
+  for (var light = 1; light <= n; light++) {
+    var isLightOn = true
+    for (var p = 1; p <= m; p++) {
+      if (light % p == 0) {
+        isLightOn = !isLightOn
+      }
+    }
+    if (!isLightOn) {
+      console.log(light)
+    }
+  }
+</script>
+
+<script id="leetcode-105-26">
+  var n = +prompt()
+  var count = 0
+  for (var i = 0; i < n; i++) {
+    var number = +prompt()
+    var last = number % 10
+    number = (number - last) / 10
+    while (number > 0) {
+      var digit = number % 10
+      last -= digit
+      if (last < 0) {
+        break
+      }
+      number = (number - digit) / 10
+    }
+    if (last > 0) {
+      count++
+    }
+  }
+  console.log(count)
+</script>
+
+
+
+<script id="leetcode-105-26">
+  var q = +prompt()
+  var isEm = prompt()
+  var p = 8
+  if (q > 1000) {
+    p += Math.ceil((q - 1000) / 500) * 4
+  }
+  if (isEm === 'y') {
+    p += 5
+  }
+  console.log(p)
+  if (isEm == 'y') {
+    if (q < 1000) {
+    } else {
+    }
+  } else {
+    if (q > 1000) {
+    } else {
+    }
+  }
+  if (q < 1000 && isEm == 'n') {
+  } else if (q > 1000 && isEm == 'n') {
+  } else if (q < 1000 && isEm == 'y') {
+  } else if (q > 1000 && isEm == 'y') {
+  }
+</script>
+
+<script id="leetcode-105-26">
+  var n = +prompt()
+  var age
+  var sum = 0
+
+  for (var i = 0; i < n; i++) {
+    age = +prompt()
+    sum = sum + age
+  }
+
+  console.log(sum / n)
+</script>
+
+<script id="leetcode-105-26">
+  var n = +prompt()
+  var max = -Infinity
+  var min = Infinity
+
+  for (var i = 0; i < n; i++) {
+    score = +prompt()
+    if (score > max) {
+      max = score
+    }
+    if (score < min) {
+      min = score
+    }
+  }
+
+  console.log(max - min)
+</script>
+
+<script id="leetcode-105-26">
+  var n = +prompt()
+  var c1 = 0
+  var c5 = 0
+  var c10 = 0
+
+  for (var i = 0; i < n; i++) {
+    var x = +prompt()
+    if (x == 1) {
+      c1++
+    }
+    if (x == 5) {
+      c5++
+    }
+    if (x == 10) {
+      c10++
+    }
+  }
+
+  console.log(c1, c5, c10)
+
+</script>

@@ -1,0 +1,21 @@
+<!--实现 int sqrt(int x) 函数。
+计算并返回 x 的平方根，其中 x 是非负整数。
+由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。
+-->
+<!-- ** -->
+<script id="leetcode-369">
+  var x = 56;
+  var isPerfectSquare = function (x) {
+    if (x === 0) return 0;
+    for (let i = 1; i <= x; i++) {
+      let min = i * i;
+      let max = min + 2 * i + 1;
+      if (min === x) {
+        return i;
+      } else if (min < x && max > x) {
+        return i;
+      }
+    }
+  };
+  console.log(isPerfectSquare(x))
+</script>

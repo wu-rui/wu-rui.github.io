@@ -1,0 +1,38 @@
+<!-- 编写一个算法来判断一个数是不是“快乐数”。
+一个“快乐数”定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和
+然后重复这个过程直到这个数变为 1，也可能是无限循环但始终变不到 1。如果可以变为 1，那么这个数就是快乐数。
+结题思路，这里用的递归，因为快乐数一定会进入一个数字为 4 → 16 → 37 → 58 → 89 → 145 → 42 → 20 → 4 
+的循环中，数字有三种可能，为上述循环数，或者为1的快乐数，或者还没有进入循环的快乐数，若是没有进入就递归调用，直到进入循环数为非快乐数，或者是快乐数
+-->
+<!-- ** -->
+<script id="leetcode-202">
+  let n = 14;
+  var isHappy = function (n) {
+    if (n < 10) {
+      if (n === 1 || n === 7) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      let num = 0;
+      let max = n.toString().length;
+      for (let i = 0; i < max; i++) {
+        if (n !== 1) {
+          num = num + (n % 10) * (n % 10);
+          n = (n - n % 10) / 10;
+        } else {
+          num += n;
+        }
+      }
+      if (num !== 4 && num !== 16 && num !== 20 && num !== 37 && num !== 58 && num !== 89 && num !== 145 && num !== 42 && num !== 1) {
+        return isHappy(num)
+      } else if (num === 1) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
+  console.log('ishappy', isHappy(n))
+</script>

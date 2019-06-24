@@ -1,0 +1,22 @@
+<!-- 运算符练习,m的n次方 -->
+<!-- ** -->
+<script id="leetcode-202">
+  let n = 6;
+  let m = 2;
+  var pow = (n) => {
+    let sum = 1;
+    let tmp = m;
+    while (n != 0) {
+      console.log(n)
+      if (n & 1 == 1) {
+        sum *= tmp;
+        console.log('sum,tmp', sum, tmp)
+      }
+      tmp *= tmp;
+      n = n >> 1;
+      console.log('tmp,n', tmp, n)
+    }
+    return sum;
+  }
+  console.log('pow', pow(n))
+</script>

@@ -1,0 +1,46 @@
+<!-- 自除数,有if和while两种解法-->
+<!-- * -->
+<script id="leetcode-728">
+  var left = 1;
+  var right = 22;
+  var selfDividingNumbers = function (left, right) {
+    let nums = [];
+    // for (let i = left; i <= right; i++) {
+    //   let num = i;
+    //   for (let j = 0; j < num.toString().length; j++) {
+    //     if (num < 10) {
+    //       nums.push(num);
+    //     } else {
+    //       let n = i % 10;
+    //       if ((num % n) == 0 && i < 10) {
+    //         nums.push(num);
+    //       } else if (num % n == 0 && i > 10 && n !== 0) {
+    //         i = (i - n) / 10;
+    //       }
+    //     }
+    //   }
+    //   i = num;
+    // }
+    while (left <= right) {
+      if (left < 10) {
+        nums.push(left);
+        left++
+      } else {
+        let i = left;
+        while (i !== 0 && i >= 1) {
+          if (left % (i % 10) === 0 && i % 10 !== 0) {
+            i = (i - i % 10) / 10;
+          } else {
+            i = -1;
+          }
+        }
+        if (i !== -1) {
+          nums.push(left);
+        }
+        left++;
+      }
+    }
+    return nums;
+  };
+  console.log(selfDividingNumbers(left, right))
+</script>

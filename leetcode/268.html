@@ -1,0 +1,14 @@
+<!--给定一个包含 0, 1, 2, ..., n 中 n 个数的序列，找出 0 .. n 中没有出现在序列中的那个数。
+因为数组的长度为n的话，最大的数就应该是n+1，那么前n项和就是n*(n+1)/2，再减去数组里面的和就是差的数
+-->
+<!-- * -->
+<script id="leetcode-268">
+  var nums = [3, 0, 1];
+  var missingNumber = function (nums) {
+    for (let i = 1; i < nums.length; i++) {
+      nums[0] += nums[i];
+    }
+    return nums.length * (nums.length + 1) / 2 - nums[0]
+  };
+  console.log(missingNumber(nums))
+</script>

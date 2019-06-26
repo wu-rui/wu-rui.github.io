@@ -16,14 +16,19 @@
       }
     } else {
       let num = 0;
-      let max = n.toString().length;
-      for (let i = 0; i < max; i++) {
-        if (n !== 1) {
-          num = num + (n % 10) * (n % 10);
-          n = (n - n % 10) / 10;
-        } else {
-          num += n;
-        }
+      // let max = n.toString().length;
+      // for (let i = 0; i < max; i++) {
+      //   if (n !== 1) {
+      //     num = num + (n % 10) * (n % 10);
+      //     n = (n - n % 10) / 10;
+      //   } else {
+      //     num += n;
+      //   }
+      // }
+      while (n > 0) {
+        var d = n % 10;
+        sum += d * d;
+        n = (n - d) / 10;
       }
       if (num !== 4 && num !== 16 && num !== 20 && num !== 37 && num !== 58 && num !== 89 && num !== 145 && num !== 42 && num !== 1) {
         return isHappy(num)

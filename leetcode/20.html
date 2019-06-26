@@ -1,7 +1,7 @@
 <!-- 判断括号是否成对出现 -->
 <!-- *** -->
 <script id="leetcode-20">
-  let str = '[][{}{()({)';  //字符串
+  let s = '[][{}{()({)';  //字符串
   let result = true;
   const dev = {
     '{': '}',
@@ -10,12 +10,12 @@
   }
   let demo = [];
   let check = ['(', '{', '['];
-  for (i in str) {
-    if (check.indexOf(str[i]) > -1) {
-      demo.push(str[i]);
+  for (i in s) {
+    if (check.indexOf(s[i]) > -1) {
+      demo.push(s[i]);
     } else {
       const peak = demo.pop();//不是正括号的时候直接移除
-      if (str[i] !== dev[peak]) {
+      if (s[i] !== dev[peak]) {
         result = false; //当前的反括号和前一个正括号不匹配的时候直接返回false
       }
     }

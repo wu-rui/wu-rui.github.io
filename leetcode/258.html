@@ -1,0 +1,14 @@
+<!-- 给定一个非负整数 num，反复将各个位上的数字相加，直到结果为一位数。-->
+<!-- *** -->
+<script id="leetcode-136">
+  var num = 28;
+  var addDigits = function (num) {
+    if (num !== 0) {
+      return num % 9 === 0 ? 9 : num % 9;
+    } else {
+      return 0;
+    }
+
+  };
+  console.log(addDigits(num))
+</script>

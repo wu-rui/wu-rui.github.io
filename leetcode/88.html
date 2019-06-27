@@ -5,30 +5,47 @@
   你可以假设 nums1 有足够的空间（空间大小大于或等于 m + n）来保存 nums2 中的元素。
   这里理解题意很重要，两个都是有序整数数组，假设都是从小到大的，解题原地修改,
   这里有好几种写法，以下算是复杂度比较低但是逻辑比较绕的
+
+  解法很简单，因为数组是递增的，我们从数组的后面开始插入数据，
+  需要三个数据，一个是当前需要修改的数据的下标c（从大数组的最后开始递减），
+  一个是大数组的对比下标m(给定值-1），一个是小数组的下标n（给定值-1）
+  循环条件是，当c<0的时候，不再循环，因为所有数据都已经改完
+
+  进入循环后，需要判断，
+  1.n是否=0，这个时候小数组已经全部插入大数组，可以退出循环
+  2.m是否=0，这个时候，大数组已经对比完，n没有对比完，直接循环把小数组的值，插入在大数组里面，不需要判断
+  3.比较m和n分别指向的值，哪个值大，就把大的值赋给c指向的值，哪个值对应的m或者n就减1
+  4.如果两个值相等，那么m和n谁大，谁减1，并且把值赋给c指向的值，
+
+  只要赋值，c就减1
+  直到把大数组遍历一遍
+
  -->
 <!-- *** -->
 <script id="leetcode-88">
-  let nums1 = [4, 6, 8, 9, 0, 0, 0, 0, 0];
-  let nums2 = [1, 2, 3, 4, 5];
-  let m = 4;
-  let n = 5;
+  // let nums1 = [4, 6, 8, 9, 0, 0, 0, 0, 0];
+  // let nums2 = [1, 2, 3, 4, 5];
+  // let m = 4;
+  // let n = 5;
+  let nums1 = [1, 0, 0, 0];
+  let nums2 = [2, 5, 6];
+  let m = 1;
+  let n = 3;
   var merge = function (nums1, m, nums2, n) {
-    let cur = nums1.length - 1;
-    while (cur >= 0) {
-      if (m < 0) {
-        nums1[cur--] = nums2[--n];
-        continue;
+    let c = nums1.length - 1;
+    while (c >= 0) {
+      if (n === 0) {
+        return nums1;
+      } else if (m == 0) {
+        nums1[c--] = nums2[--n]
+      } else if (nums1[m - 1] > nums2[n - 1]) {
+        nums1[c--] = nums1[--m]
+      } else if (nums1[m - 1] < nums2[n - 1]) {
+        nums1[c--] = nums2[--n]
+      } else if (nums1[m - 1] == nums2[n - 1]) {
+        m > n ? nums1[c--] = nums1[--m] : nums1[c--] = nums2[--n];
       }
-      if (n < 0) {
-        nums1[cur--] = nums1[--m];
-        continue;
-      }
-      if (nums1[m - 1] > nums2[n - 1]) {
-        nums1[cur--] = nums1[--m];
-      } else {
-        nums1[cur--] = nums2[--n];
-      }
-    };
+    }
     return nums1;
   }
   console.log(merge(nums1, m, nums2, n))

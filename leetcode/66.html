@@ -8,24 +8,15 @@
 
 -->
 <!-- ** -->
-<script id="leetcode-9">
-  let digits = [4, 3, 2, 1];
+<script id="leetcode-66">
+  let digits = [1, 2, 3, 9];
   var plusOne = function (digits) {
-    if (digits[digits.length - 1] !== 9) {
-      digits[digits.length - 1] += 1;
-      return digits;
-    } else {
-      let i = 0;
-      for (i = digits.length - 1; digits[i] == 9; i--) {
-        digits[i] = 0;
-      }
-      if (i !== -1) {
-        digits[i] += 1;
-      } else {
-        digits.unshift(1)
-      }
-      return digits;
+    let i = 0;
+    for (i = digits.length - 1; digits[i] == 9; i--) {
+      digits[i] = 0;
     }
+    i === -1 ? digits.unshift(1) : digits[i] += 1;
+    return digits;
   };
   console.log('isPalindrome', plusOne(digits))
 </script>

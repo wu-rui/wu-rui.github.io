@@ -15,11 +15,7 @@
         max = 0;
       }
     }
-    if (count === 0) {
-      count = max;
-    } else {
-      count = Math.max(count, max)
-    }
+    count === 0 ? count = max : count = Math.max(count, max);
     return count;
   };
   console.log(findMaxConsecutiveOnes(nums))

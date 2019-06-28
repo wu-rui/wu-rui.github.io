@@ -1,0 +1,44 @@
+<!--给定一个整数 n，返回 n! 结果尾数中零的数量。-->
+<!-- *** -->
+<script id="leetcode-172">
+  var n = 6;
+  var trailingZeroes = function (n) {
+    // let count = 0;
+    // while (n >= 5) {
+    //   count += Math.floor(n / 5);
+    //   n = Math.floor(n / 5);
+    // }
+    // return count;
+    let count = 0;
+    while (n >= 5) {
+      count += Math.floor(n / 5);
+      n = Math.floor(n / 5);
+    }
+    return count;
+  };
+  console.log(trailingZeroes(n))
+
+
+
+
+
+</script>
+
+
+<!--递归 
+  function findSolution(target) {
+  var solutions = []
+
+  function find2(start, history) {
+    if (start == target) {
+      solutions.push(history)
+    } else if (start < target) {
+      find2(start + 1, history + ' + 1')
+      find2(start * 3, '(' + history + ') * 3')
+    }
+  }
+
+  find2(1, '1')
+  return solutions
+}
+console.log(findSolution(25)) -->

@@ -1,0 +1,49 @@
+<!--UTF-8 中的一个字符可能的长度为 1 到 4 字节，遵循以下的规则：
+对于 1 字节的字符，字节的第一位设为0，后面7位为这个符号的unicode码。
+对于 n 字节的字符 (n > 1)，第一个字节的前 n 位都设为1，第 n+1 位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的unicode码。
+-->
+<!-- ** -->
+<script id="leetcode-393">
+  var data = [248, 130, 130, 130];
+  var validUtf8 = function (data) {
+    if (data.length > 0) {
+      let cur = 0;
+      for (let i = 0; i < data.length; i++) {
+        if (data.length === 1) {
+          if (data[i].toString(2).length < 8) {
+            return true;
+          } else {
+            return data[i].toString(2)[0] === '0' ? true : false;
+          }
+        } else {
+          if (i === 0) {
+            let total = true;
+            let head = data[0].toString(2);
+            for (let j = 0; j < head.length; j++) {
+              if (total) {
+                if (head[j] === '0') {
+                  total = false;
+                } else {
+                  cur++;
+                }
+              }
+            }
+          }
+          if (i < cur && i > 0 && cur > 1) {
+            let d = data[i].toString(2);
+            if (d.length < 8 || d[0] !== '1' || d[1] !== '0') {
+              return false;
+            }
+          } else if (i >= cur && i > 0 && cur > 1) {
+            data.splice(0, i)
+            return validUtf8(data)
+          } else if (cur < 2) {
+            return false
+          }
+        }
+      }
+      return true;
+    }
+  };
+  console.log(validUtf8(data))
+</script>

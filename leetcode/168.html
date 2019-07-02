@@ -1,0 +1,30 @@
+<!-- 给定一个Excel表格中的列名称，返回其相应的列序号。
+例如，
+    A -> 1
+    B -> 2
+    C -> 3
+    ...
+    Z -> 26
+    AA -> 27
+    AB -> 28 
+    ...
+
+    这里的想法是：写出公式，
+    每一位都为26的次方，每次循环取模，从后往前得到字符串
+    但需要减一，因为数组从0开始，但是数字从1开始
+
+-->
+<!-- *** -->
+<script id="leetcode-168">
+  var n = 17654;
+  var convertToTitle = function (n) {
+    let count = '';
+    let data = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    while (n) {
+      count = data[(n - 1) % 26] + count;
+      n = (n - ((n - 1) % 26 + 1)) / 26;
+    }
+    return count;
+  };
+  console.log(convertToTitle(n))
+</script>

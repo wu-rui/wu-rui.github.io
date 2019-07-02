@@ -2,7 +2,6 @@
 <!-- *** -->
 <script id="leetcode-20">
   let s = '[][{}{()({)';  //字符串
-  let result = true;
   const dev = {
     '{': '}',
     '(': ')',
@@ -20,8 +19,5 @@
       }
     }
   }
-  if (demo.length > 0) {
-    result = false;
-  }
-  return result;
+  return demo.length > 0 ? false : true;
 </script>

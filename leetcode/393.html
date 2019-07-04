@@ -4,46 +4,100 @@
 -->
 <!-- ** -->
 <script id="leetcode-393">
-  var data = [248, 130, 130, 130];
+  // var data = [248, 130, 130, 130];
+  // var data = [240, 162, 138, 147, 145]
+  // var data = [10]
+  // var data = [197, 130, 1];
+  // var data = [235, 140, 4];
+  // var data = [250, 145, 145, 145, 145];
+  var data = [254, 145, 145, 145, 145, 145, 145];
   var validUtf8 = function (data) {
-    if (data.length > 0) {
+    if (data.length == 0) {
+      return false
+    } else if (data.length === 1) {
+      //数组长度为1
+      if (data[0].toString(2).length < 8) {
+        return true;
+      } else {
+        return data[0].toString(2)[0] === '0' ? true : false;
+      }
+    } else {
+      //数组的长度大于1
       let cur = 0;
       for (let i = 0; i < data.length; i++) {
-        if (data.length === 1) {
-          if (data[i].toString(2).length < 8) {
-            return true;
-          } else {
-            return data[i].toString(2)[0] === '0' ? true : false;
-          }
-        } else {
-          if (i === 0) {
-            let total = true;
-            let head = data[0].toString(2);
-            for (let j = 0; j < head.length; j++) {
-              if (total) {
-                if (head[j] === '0') {
-                  total = false;
-                } else {
-                  cur++;
-                }
-              }
+        let t = data[i].toString(2);
+        if (t[0] !== 0 && t.length > 7) {
+          // 只有非0开头才能进入循环,包括长度必须大于等于8,1开头
+          if (cur === 0) {
+            // cur为0是因为，当前没有1111这样的数据，就进来判断有几个1
+            while (t[cur] == 1 && cur <= t.length) {
+              cur++
             }
-          }
-          if (i < cur && i > 0 && cur > 1) {
-            let d = data[i].toString(2);
-            if (d.length < 8 || d[0] !== '1' || d[1] !== '0') {
+            // 当1的此数为1或者大于4的时候
+            if (--cur === 0 || cur > 3) {
               return false;
             }
-          } else if (i >= cur && i > 0 && cur > 1) {
-            data.splice(0, i)
-            return validUtf8(data)
-          } else if (cur < 2) {
-            return false
+          } else {
+            // cur遇到10递减
+            if (t && t[0] == 1 && t[1] == 0) {
+              cur--;
+            } else {
+              return false;
+            }
+          }
+        } else {
+          // 当循环遍历完，但是cur不为0的时候
+          if (cur !== 0) {
+            return false;
           }
         }
       }
-      return true;
+      if (cur !== 0) {
+        return false;
+      }
     }
+    return true;
   };
   console.log(validUtf8(data))
 </script>
+
+
+
+<!-- // if (data.length > 0) {
+  //   let cur = 0;
+  //   for (let i = 0; i < data.length; i++) {
+  //     if (data.length === 1) {
+  //       if (data[i].toString(2).length < 8) {
+  //         return true;
+  //       } else {
+  //         return data[i].toString(2)[0] === '0' ? true : false;
+  //       }
+  //     } else {
+  //       if (i === 0) {
+  //         let total = true;
+  //         let head = data[0].toString(2);
+  //         for (let j = 0; j < head.length; j++) {
+  //           if (total) {
+  //             if (head[j] === '0') {
+  //               total = false;
+  //             } else {
+  //               cur++;
+  //             }
+  //           }
+  //         }
+  //       }
+  //       if (i < cur && i > 0 && cur > 1) {
+  //         let d = data[i].toString(2);
+  //         if (d.length < 8 || d[0] !== '1' || d[1] !== '0') {
+  //           return false;
+  //         }
+  //       } else if (i >= cur && i > 0 && cur > 1) {
+  //         data.splice(0, i)
+  //         return validUtf8(data)
+  //       } else if (cur < 2) {
+  //         return false
+  //       }
+  //     }
+  //   }
+  //   return true;
+  // } -->

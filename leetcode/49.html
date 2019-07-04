@@ -1,0 +1,26 @@
+<!-- * Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+ * Output: 
+ * [
+ * ⁠ ["ate","eat","tea"],
+ * ⁠ ["nat","tan"],
+ * ⁠ ["bat"]
+ * ] -->
+<!-- *** -->
+<script id="leetcode-49">
+  var num1 = ["eat", "tea", "tan", "ate", "nat", "bat"];
+  var groupAnagrams = function (strs) {
+    let data = [];
+    let res = [];
+    for (let i = 0; i < strs.length; i++) {
+      let newS = strs[i].split('').sort().join('');
+      let j = data.indexOf(newS);
+      if (j !== -1) {
+        res[j].push(strs[i]);
+      } else {
+        data.push(newS)
+        res.push([strs[i]]);
+      }
+    }
+  };
+  console.log(groupAnagrams(num1))
+</script>

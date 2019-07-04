@@ -1,0 +1,23 @@
+<!-- 1002-->
+<!-- ** -->
+<script id="leetcode-1002">
+  var A = ["bella", "label", "roller"];
+  var commonChars = function (A) {
+    let member = [];
+    for (let i = 0; i < A[0].length; i++) {
+      let cur = A[0][i];
+      for (let j = 1; j < A.length; j++) {
+        if (A[j].indexOf(cur) == -1) {
+          cur = '';
+        } else {
+          A[j] = A[j].replace(cur, '');
+        }
+      }
+      if (cur !== '') {
+        member.push(cur);
+      }
+    }
+    return member;
+  };
+  console.log(commonChars(A))
+</script>

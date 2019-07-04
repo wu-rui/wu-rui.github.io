@@ -1,0 +1,28 @@
+<!--第一个不重复的字符-->
+<!-- ** -->
+<script id="leetcode-387">
+  var nums = 'loveleetcode';
+  var firstUniqChar = function (s) {
+    // 映射
+    // let member = {}
+    // for (let i = 0; i < s.length; i++) {
+    //   let code = s.indexOf(s[i])
+    //   if (i !== code) {
+    //     member[s[i]] += 1;
+    //   } else {
+    //     member[s[i]] = 1;
+    //   }
+    // }
+    // for (key in member) {
+    //   if (member[key] === 1) return s.indexOf(key);
+    // }
+    // return -1;
+    for (let i = 0; i < s.length; i++) {
+      if (s.indexOf(s[i]) === s.lastIndexOf(s[i])) {
+        return i
+      }
+    }
+    return -1;
+  };
+  console.log(firstUniqChar(nums))
+</script>

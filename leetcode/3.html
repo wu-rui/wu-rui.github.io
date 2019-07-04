@@ -1,0 +1,25 @@
+<!-- 最长不重复字符串-->
+<!-- ** -->
+<script id="leetcode-3">
+  let x = 'dvdf';
+  // let x = 'pwwkew';
+  var lengthOfLongestSubstring = function (s) {
+    if (s.length < 1) return 0;
+    let max = 0;
+    let count = 0;
+    let i = 0;
+    for (i of s) {
+      let j = s.indexOf(s[i]);
+      if (i !== j) {
+        max = Math.max(max, count);
+        s = s.slice(j + 1, s.length)
+        count = 0;
+        i = -1;
+      } else {
+        count++;
+      }
+    }
+    return Math.max(max, count);
+  };
+  console.log('isPalindrome', lengthOfLongestSubstring(x))
+</script>

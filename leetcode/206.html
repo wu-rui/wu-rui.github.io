@@ -1,0 +1,110 @@
+<!-- 链表反转-->
+<!-- ** -->
+<script id="leetcode-206">
+  let y = {
+    val: 2,
+    next: {
+      val: 4,
+      next: {
+        val: 3,
+        next: {
+          val: 6,
+          next: {
+            val: 9,
+            next: {
+              val: 8,
+              next: {
+                val: 5,
+                next: null,
+              },
+            },
+          },
+        },
+      }
+    }
+  };
+  let x = {
+    val: 5,
+    next: {
+      val: 6,
+      next: {
+        val: 9,
+        next: null,
+      }
+    }
+  };
+  let z = {
+    val: 9,
+    next: null,
+  }
+
+  /**
+   * 头插法链表反转
+  var reverseList = function (head) {
+    if (!head) return false;
+    let newList = {
+      val: 0,
+      next: {
+        val: head.val,
+        next: null,
+      },
+    }
+    head = head.next;
+    while (head) {
+      let s = {
+        val: head.val,
+        next: null,
+      }
+      s.next = newList.next;
+      newList.next = s;
+      head = head.next;
+    }
+    return newList.next;
+  };
+
+  **/
+
+
+  /**
+   *  递归实现链表反转
+  **/
+  var reverseList = function (head) {
+    if (!head || head.next == null) return head;
+    let newList = reverseList(head.next)
+    head.next.next = head;
+    head.next = null;
+    return newList;
+  }
+
+  console.log('reverseList', reverseList(x))
+</script>
+
+
+
+<!-- leetcode版本
+  var addTwoNumbers = function(l1, l2) {
+    let l3 = new ListNode(0);
+    let cur = l3;
+    let isTen = 0;
+    while (l1 || l2) {
+      let ll1 = (l1 != null ? l1.val : 0);
+      let ll2 = (l2 != null ? l2.val : 0);
+      let lw = new ListNode(ll1 + ll2 + isTen);
+      if (lw.val > 9) {
+        lw.val = lw.val - 10;
+        isTen = 1;
+      } else {
+        isTen = 0;
+      }
+      l1 != null ? l1 = l1.next : '';
+      l2 != null ? l2 = l2.next : '';
+      cur.next = lw;
+      cur = cur.next;
+    }
+     if (isTen === 1) {
+        cur.next = { val: 1, next: null };
+        cur = cur.next;
+     }
+    return l3.next;
+};
+ -->

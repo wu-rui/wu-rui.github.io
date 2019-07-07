@@ -1,0 +1,119 @@
+<!-- 链表反转-->
+<!-- ** -->
+<script id="leetcode-92">
+  let y = {
+    val: 1,
+    next: {
+      val: 2,
+      next: {
+        val: 3,
+        next: {
+          val: 4,
+          next: {
+            val: 5,
+            next: {
+              val: 6,
+              next: {
+                val: 7,
+                next: null,
+              },
+            },
+          },
+        },
+      }
+    }
+  };
+  let x = {
+    val: 5,
+    next: {
+      val: 6,
+      next: {
+        val: 9,
+        next: null,
+      }
+    }
+  };
+  let z = {
+    val: 9,
+    next: null,
+  }
+  var m = 2;
+  var n = 2;
+  var reverseBetween = function (head, m, n) {
+    debugger
+    let res = head;
+    let count = 0;
+    let first = {};
+    let end = {};
+    while (head) {
+      count++;
+      if (count == 1 && m == 1) {
+        // 当从链表头开始反转的是
+        first.next = head;
+      }
+      if (m - count == 1) {
+        first = head;
+      }
+      if (count == m) {
+        end = head;
+      }
+      if (n == count) {
+        if (head.next !== null) {
+
+          end.next = head.next;
+        } else {
+          end.next = null;
+        }
+      }
+      if (count > m && count <= n) {
+        let s = {
+          val: head.val,
+          next: null,
+        }
+        s.next = first.next;
+        first.next = s;
+      }
+      head = head.next;
+    }
+    return m === 1 ? first.next : res;
+  };
+  console.log('reverseBetween', reverseBetween(y, m, n))
+  console.log('2,8,9,6,3,4,5')
+</script>
+
+<!-- 
+      if (!head) return false;
+    let res = head;
+    let first = {}
+    let end = {}
+    let count = 0;
+    while (head) {
+      count++;
+      if (m == 1 && count == 1) {
+        first = {
+          val: 0,
+          next: head,
+        }
+        res = first.next;
+      }
+      if (count == m - 1 && m !== 1) {
+        first = head;
+      }
+      if (count > m && count <= n) {
+        let s = {
+          val: head.val,
+          next: null,
+        }
+        if (count === m + 1) {
+          end = first.next;
+        }
+        s.next = first.next;
+        first.next = s;
+      }
+      if (count === n) {
+        head.next !== null ? end.next = head.next : '';
+      }
+      head = head.next;
+    }
+    return res;
+ -->

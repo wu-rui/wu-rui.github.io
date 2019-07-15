@@ -62,13 +62,21 @@ var preorderTraversal = function (root) {
  * 迭代做法
  */
 var preorderTraversal = function (root) {
-  // 没想好
-  let top = -1;
-  while (root !== null || top !== -1) {
-    while (root !== null) {
-
+  if (!root) return [];
+  const ret = [];
+  const stack = [root];
+  let t = stack.pop();
+  while (t) {
+    ret.push(t.val);
+    if (t.right) {
+      stack.push(t.right);
     }
+    if (t.left) {
+      stack.push(t.left);
+    }
+    t = stack.pop();
   }
+  return ret;
 };
 
 

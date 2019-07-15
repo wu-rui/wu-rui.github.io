@@ -49,20 +49,10 @@
  */
 var buildTree = function (inorder, postorder) {
   if (postorder.length < 1) return null;
-  let root = {
-    val: postorder[postorder.length - 1],
-    left: null,
-    right: null,
-  }
+  let root = new TreeNode(postorder[postorder.length - 1]);
   let i = inorder.indexOf(postorder.pop())
-  if (i !== 0) {
-    // 后序遍历有左边节点才进
-    root.left = buildTree(inorder.slice(0, i), postorder.slice(0, i))
-  }
-  if (i !== inorder.length - 1) {
-    // 后序遍历有右边节点才进
-    root.right = buildTree(inorder.slice(i + 1, inorder.length), postorder.slice(i, postorder.length))
-  }
+  root.left = buildTree(inorder.slice(0, i), postorder.slice(0, i))
+  root.right = buildTree(inorder.slice(i + 1), postorder.slice(i))
   return root;
 };
 

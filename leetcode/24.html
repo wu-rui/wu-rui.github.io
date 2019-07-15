@@ -1,0 +1,197 @@
+<!-- 链表两两反转-->
+<!-- ** -->
+<!-- <script id="leetcode-24">
+  let y = {
+    val: 2,
+    next: {
+      val: 4,
+      next: {
+        val: 3,
+        next: {
+          val: 6,
+          next: {
+            val: 9,
+            next: {
+              val: 8,
+              next: null,
+            },
+          },
+        },
+      }
+    }
+  };
+  let x = {
+    val: 5,
+    next: {
+      val: 6,
+      next: {
+        val: 9,
+        next: null,
+      }
+    }
+  };
+  let z = {}
+  /**
+  var swapPairs = function (head) {
+    // 当没有节点或者只有一个节点的时候
+    if (!head || !head.next) return head;
+    // 当有两个及以上的时候
+    let res = head.next;
+    let cur = {};
+    let before = {
+      next: null,
+    };
+    while (head.next) {
+      if (head.next.next) {
+        cur = head.next.next;
+        before !== null ? before.next = head.next : '';
+        head.next.next = head;
+        head.next = cur;
+        before = head;
+      } else {
+        before.next = head.next;
+        head.next.next = head;
+        head.next = null;
+        break;
+      }
+      head.next.next == true ? head = head.next.next : head = head.next;
+    }
+    return res;
+  };
+  **/
+  var swapPairs = function (head) {
+
+  };
+  console.log('swapPairs', swapPairs(x))
+</script> -->
+
+
+<script id="123">
+  function mapDiGui() {
+    let root = {
+      val: 1,
+      left: {
+        val: 2,
+        left: null,
+        right: null,
+      },
+      right: {
+        val: 3,
+        left: {
+          val: 4,
+          left: null,
+          right: {
+            val: 5,
+            left: {
+              val: 6,
+              left: null,
+              right: null,
+            },
+            right: {
+              val: 7,
+              left: null,
+              right: null,
+            }
+          }
+        },
+        right: null,
+      }
+    }
+    let pre = [];
+    let cen = [];
+    let post = [];
+    // 前序遍历
+    function preOrder(root) {
+      if (root) {
+        pre.push(root.val)
+        preOrder(root.left)
+        preOrder(root.right)
+      }
+    }
+    // 中序遍历
+    function inOrder(root) {
+      if (root) {
+        inOrder(root.left)
+        cen.push(root.val)
+        inOrder(root.right)
+      }
+    }
+    // 后续遍历
+    function postOrder(root) {
+      if (root) {
+        postOrder(root.left)
+        postOrder(root.right)
+        post.push(root.val)
+      }
+    }
+    // 层次遍历没有递归算法
+    // preOrder(root);
+    // inOrder(root);
+    // postOrder(root);
+    // console.log('pre', pre);
+    // console.log('cen', cen);
+    // console.log('post', post);
+
+    // 排序二叉树插入值
+    function sortInsertRoot(root, num) {
+      if (!root) return { val: num };
+      if (root) {
+        if (num >= root.val) {
+          root.right = sortInsertRoot(root.right, num)
+        } else {
+          root.left = sortInsertRoot(root.left, num)
+        }
+      }
+      return root;
+    }
+
+
+    // 给定数组，变成一个排序二叉树，再按照中序遍历输出数组 
+    function bstSort(ary) {
+      var root = ary.reduce(sortInsertRoot, null)
+      k = 0;
+      inOrder(root, val => {
+        ary[k++] = val;
+      })
+      return ary;
+    }
+
+
+    // 选择排序
+    // let ary = Array(10).fill(0).map(it => Math.random() * 100 || 0)
+    // function selectSort(ary) {
+
+    // }
+    // 插入排序
+
+
+    // 递归反转数字为字符串
+    function strTorts(s, isOut = true) {
+      if (n == 0) {
+        return isOut == true ? '0' : ''
+      }
+      let d = n % 10
+      let rest = (n - d) / 10
+      return '' + d + strTorts(rest, false)
+    }
+
+
+    // 快排序
+    function quickSort(ary, first, end) {
+      let i = first;
+      let j = end;
+      while (i < j) {
+        while (i < j && ary[i] < ary[j]) {
+          j--;
+          if (i < j) {
+            let cur = ary[i];
+            ary[i] = ary[j]
+            ary[j] = cur;
+            i++;
+          }
+        }
+      }
+    }
+  }
+  console.log(mapDiGui())
+</script>

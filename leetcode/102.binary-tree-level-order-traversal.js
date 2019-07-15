@@ -73,4 +73,54 @@ var levelOrder = function (root) {
   }
   return res;
 };
+var levelOrder = function (root) {
+  var d = -1;
+  let result = []
+  traverse(root)
+  return result;
+  function traverse() {
+    d++;
+    if (root) {
+      if (d in result) {
+        result[d].push(root.val)
+      } else {
+        result[d] = [root.val]
+      }
+      traverse(root.left)
+      traverse(root.right)
+    }
+    d--;
+  }
+}
+var levelOrder = function (root) {
+  let result = []
+  traverse(root)
+  return result;
+  function traverse(root, dep = 0) {
+    if (root) {
+      if (dep in result) {
+        result[dep].push(root.val)
+      } else {
+        result[dep] = [root.val]
+      }
+      traverse(root.left, dep + 1)
+      traverse(root.right, dep + 1)
+    }
+  }
+}
+
+
+var levelOrder = function (root, res = [], dep = 0) {
+  traverse(root)
+  if (root) {
+    if (dep in res) {
+      res[dep].push(root.val)
+    } else {
+      res[dep] = [root.val]
+    }
+    levelOrder(root.left, dep + 1)
+    levelOrder(root.right, dep + 1)
+  }
+  return res;
+}
 

@@ -2,7 +2,9 @@ var wu_rui = {
   compact: function (ary) {
     return ary.filter(it => it)
   },
-  curry: function (f, n = f.length) {
+  curry: function (f, n = 0) {
+    if (!f) return undefined;
+    n = f.length;
     let ary = [];
     return function (...arg) {
       ary.push(...arg)
@@ -13,5 +15,4 @@ var wu_rui = {
       }
     }
   },
-
 }

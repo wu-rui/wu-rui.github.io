@@ -5,11 +5,11 @@ var wu_rui = {
   curry: function (f, n = 0) {
     if (!f) return undefined;
     n = f.length;
-    let ary = [];
+    let ary = arguments[2] || [];
     return function (...arg) {
       ary.push(...arg)
       if (ary.length < n) {
-        return f;
+        return curry(f, n, ary);
       } else {
         return f(...ary.slice(0, n))
       }

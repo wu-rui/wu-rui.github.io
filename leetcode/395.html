@@ -1,0 +1,31 @@
+<!---->
+<!-- **** -->
+<script id="leetcode-395">
+  var nums = 'bbaaacbd';
+  var k = 3;
+  var longestSubstring = function (s, k) {
+    debugger
+    let member = {};
+    if (s.length < k) return 0;
+    for (i in s) {
+      if (s[i] in member) {
+        member[s[i]] += 1;
+      } else {
+        member[s[i]] = 1;
+      }
+    }
+    for (key in member) {
+      if (member[key] < k) {
+        let code = s.indexOf(key)
+        if (code >= k && code <= s.length) {
+          s = s.split('').splice(code, s.length).join('');
+        } else {
+          s = s.split('').splice(0, code).join('');
+        }
+        return longestSubstring(s, k)
+      }
+    }
+    return s.length;
+  };
+  console.log(longestSubstring(nums, k))
+</script>

@@ -36,19 +36,14 @@
 /**
  * @param {number[]} nums
  * @return {number}
+ * 投票法，众数
  */
 var majorityElement = function (nums) {
   let count = 1;
   let m = nums[0];
   for (let i = 1; i < nums.length; i++) {
-    if (count === 0) {
-      m = nums[i];
-    }
-    if (nums[i] === m) {
-      count++;
-    } else {
-      count--;
-    }
+    count === 0 ? m = nums[i] : '';
+    nums[i] === m ? count++ : count--;
   }
   return m;
 };

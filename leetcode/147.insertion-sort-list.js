@@ -95,6 +95,7 @@ var insertionSortList = function (head) {
         }
         nodeNext = nodeNext.next;
       }
+      // 如果没有进循环，表示没有比自己更大的节点，因此直接插入在最后面
       if (!isAdd) {
         nodeNext.next = cur;
       }

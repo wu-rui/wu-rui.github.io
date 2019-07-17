@@ -85,40 +85,44 @@ var wu_rui = function () {
 }()
 
 
+var test = function () {
 
-function negate(f) {
-  return function (...args) {
-    return !f(...args);
-  }
-}
-// 等同于
-var negate = f => (...args) => !f(...args);
 
-// lodash的flip函数
-function flip(func) {
-  return function (...args) {
-    return func(...args.reverse())
-  }
-}
-console.gol = flip(console.log)
-console.gol(123) == 321
-/**
- * 
- * 返回一个函数，在前n次被调用的时候调用的是原函数
- * 当超过n次直接返回最后一次调用的结果
- * @param {*} m 
- * @param {*} func 
- */
-
-function before(n, func) {
-  var times = 0;
-  var lastRes = null;
-  return function (...args) {
-    times++;
-    if (times < n) {
-      return lastRes = func(...args)
-    } else {
-      return lastRes;
+  function negate(f) {
+    return function (...args) {
+      return !f(...args);
     }
   }
+  // 等同于
+  var negate = f => (...args) => !f(...args);
+
+  // lodash的flip函数
+  function flip(func) {
+    return function (...args) {
+      return func(...args.reverse())
+    }
+  }
+  console.gol = flip(console.log)
+  console.gol(123) == 321
+  /**
+   * 
+   * 返回一个函数，在前n次被调用的时候调用的是原函数
+   * 当超过n次直接返回最后一次调用的结果
+   * @param {*} m 
+   * @param {*} func 
+   */
+
+  function before(n, func) {
+    var times = 0;
+    var lastRes = null;
+    return function (...args) {
+      times++;
+      if (times < n) {
+        return lastRes = func(...args)
+      } else {
+        return lastRes;
+      }
+    }
+  }
+
 }

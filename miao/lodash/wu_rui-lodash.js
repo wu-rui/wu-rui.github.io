@@ -26,7 +26,7 @@ var wu_rui = function () {
   function memoize(f) {
     let cache = {}
     return function (arg) {
-      if (arg in map) {
+      if (arg in cache) {
         return cache[arg]
       } else {
         return cache[arg] = f(arg)
@@ -42,7 +42,7 @@ var wu_rui = function () {
 
 
   function unary(func, n = func.length) {
-    return ary(f, 1)
+    return ary(func, 1)
   }
 
   function negate(f) {

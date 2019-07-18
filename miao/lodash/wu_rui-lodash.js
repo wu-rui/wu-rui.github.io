@@ -5,7 +5,7 @@ var wu_rui = function () {
   }
 
   function curry(f, n = 0) {
-    if (!f) return undefined;
+    if (!f) return curry;
     n = f.length;
     let ary = arguments[2] || [];
     return function (...arg) {

@@ -14,6 +14,10 @@ var wu_rui = function () {
     return res;
   }
 
+  function drop(array, n = 1) {
+    return n == 0 ? array : array.slice(n)
+  }
+
   /**
    * 接受多个参数，第一个是需要判断的数组
    * 后面的所有参数，是用作对比的数组集
@@ -125,6 +129,7 @@ var wu_rui = function () {
     before,
     chunk,
     difference,
+    drop,
   }
 }()
 

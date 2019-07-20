@@ -1,0 +1,25 @@
+<!-- high-order-function-->
+<!-- ** -->
+<script id="high-order-function">
+  let a = [1, 2, 3, 4, 5, 6]
+  function forEach(array, action) {
+    for (let i = 0; i < a.length; i++) {
+      action(a[i])
+    }
+  }
+  forEach(a, (n) => {
+    n = n + 'wurui';
+    console.log('这是改变后的n', n)
+  })
+
+  function gather(journal) {
+    var phis = {};
+    journal.forEach((entry) => {
+      entry.events.forEach((event) => {
+        if (!(event in phis))
+          phis[event] = phi(tableFor(event, journal))
+      })
+    });
+    return phis;
+  }
+</script>

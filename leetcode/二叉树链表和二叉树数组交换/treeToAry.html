@@ -1,0 +1,163 @@
+<script id="leetcode-2">
+  // 二叉数组变为二叉链表
+  // let ary = [1, 2, null, 3, 4, null, 5, null, null, null, 6, 7, null, 8, 9]
+  let ary = [1, 4, 3, 2]
+  function aryToRoot(ary) {
+    if (ary.length == 0) return null;
+    let root = {
+      val: ary[0],
+      left: null, right: null,
+    }
+    let nodes = [root];
+    for (let i = 1; i < ary.length; i++) {
+      let cur = nodes.shift();
+      if (ary[i] == null) {
+        cur.left = null;
+      } else {
+        cur.left = {
+          val: ary[i],
+          left: null,
+          right: null,
+        }
+        nodes.push(cur.left)
+      }
+      i++;
+      if (!(i < ary.length)) break;
+      if (ary[i] == null) {
+        cur.right = null;
+      } else {
+        cur.right = {
+          val: ary[i],
+          left: null,
+          right: null,
+        }
+        nodes.push(cur.right)
+      }
+    }
+    return root;
+  }
+  function treeToAry(root) {
+    if (root) {
+      let res = [];
+      let nodes = [root]
+      while (nodes.length) {
+        let cur = nodes.shift();
+        if (cur) {
+          res.push(cur.val);
+          nodes.push(cur.left, cur.right)
+        } else {
+          res.push(null)
+        }
+      }
+      return res;
+    }
+    return [];
+  }
+  let root = aryToRoot(ary);
+  console.log('root', root)
+  // let ary2 = treeToAry(root);
+  // console.log('ary', ary2)
+  var preorderTraversal = function (root) {
+    if (root) {
+      let res = []
+      let nodes = [root]
+      while (nodes.length) {
+        let cur = nodes.shift()
+        if (cur) {
+          res.push(cur.val)
+          nodes.push(cur.left, cur.right)
+        }
+      }
+      return res;
+    }
+    return [];
+  };
+  console.log('res', preorderTraversal(root))
+  // 二叉树组转换二叉链表
+  function aryTree(ary, rootPos = 0) {
+    if (ary[rootPos] == null) {
+      return null;
+    }
+    return {
+      val: ary[rootPos],
+      left: aryTree(ary, rootPos * 2 + 1),
+      right: aryTree(ary, rootPos * 2 + 2),
+    }
+  }
+  // 二叉链表转换二叉树组
+  function treeAry(tree, rootPos = 0, result = []) {
+    if (tree) {
+      ary[rootPos] = tree.val;
+      treeAry(tree.left, rootPos * 2 + 1, result);
+      treeAry(tree.right, rootPos * 2 + 2, result);
+    }
+    return result;
+  }
+
+  function mapDiGui() {
+    let root = {
+      val: 1,
+      left: {
+        val: 2,
+        left: null,
+        right: null,
+      },
+      right: {
+        val: 3,
+        left: {
+          val: 4,
+          left: null,
+          right: {
+            val: 5,
+            left: {
+              val: 6,
+              left: null,
+              right: null,
+            },
+            right: {
+              val: 7,
+              left: null,
+              right: null,
+            }
+          }
+        },
+        right: null,
+      }
+    }
+    let pre = [];
+    let cen = [];
+    let post = [];
+    function preOrder(root) {
+      if (root) {
+        pre.push(root.val)
+        preOrder(root.left)
+        preOrder(root.right)
+      }
+    }
+    function inOrder(root) {
+      if (root) {
+        cen.push(root.val)
+        inOrder(root.left)
+        inOrder(root.right)
+      }
+    }
+    function postOrder(root) {
+      if (root) {
+        post.push(root.val)
+        postOrder(root.left)
+        postOrder(root.right)
+      }
+    }
+    preOrder(root);
+    inOrder(root);
+    postOrder(root);
+    console.log(pre);
+    console.log(cen);
+    console.log(post);
+  }
+
+  console.log(mapDiGui())
+
+  var a = [1, null, 2, 3, null, 4, 5, 8, null, 6, 7]
+  var b = [1, 2, null, 3, 4, null, 5, null, null, null, 6, 7, null, 8, 9]
+</script>

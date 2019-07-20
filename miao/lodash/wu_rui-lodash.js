@@ -14,10 +14,20 @@ var wu_rui = function () {
     return res;
   }
 
+  /**
+   * 接受多个参数，第一个是需要判断的数组
+   * 后面的所有参数，是用作对比的数组集
+   * 找出第一个数组与后面所有数组没有相同数据的数组返回
+   */
   function difference(array, value = []) {
     let res = []
     let data = {}
     if (value.length > 0) {
+      if (arguments.length > 2) {
+        for (let i = 2; i < arguments.length; i++) {
+          value.push(...arguments[i])
+        }
+      }
       value.map((v) => {
         data[v] = v;
       })
@@ -136,11 +146,11 @@ var wu_rui = function () {
 //   console.gol = flip(console.log)
 //   console.gol(123) == 321
 //   /**
-//    * 
+//    *
 //    * 返回一个函数，在前n次被调用的时候调用的是原函数
 //    * 当超过n次直接返回最后一次调用的结果
-//    * @param {*} m 
-//    * @param {*} func 
+//    * @param {*} m
+//    * @param {*} func
 //    */
 
 //   function before(n, func) {

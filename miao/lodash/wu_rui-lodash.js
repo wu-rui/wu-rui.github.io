@@ -1,5 +1,19 @@
 var wu_rui = function () {
 
+  function chunk(ary, size = 1) {
+    if (ary.length == 0) return []
+    let res = []
+    let cur = []
+    for (let i = 0; i < ary.length; i++) {
+      cur.push(ary[i])
+      if (cur.length == size || i == ary.length - 1) {
+        res.push(cur)
+        cur = []
+      }
+    }
+    return res;
+  }
+
   function compact(ary) {
     return ary.filter(it => it)
   }
@@ -81,6 +95,7 @@ var wu_rui = function () {
     negate,
     flip,
     before,
+    chunk,
   }
 }()
 

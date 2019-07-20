@@ -14,6 +14,24 @@ var wu_rui = function () {
     return res;
   }
 
+  function difference(array, value = []) {
+    let res = []
+    let data = {}
+    if (value.length > 0) {
+      value.map((v) => {
+        data[v] = v;
+      })
+    }
+    if (array.length > 0) {
+      array.map((a) => {
+        if (!(a in data)) {
+          res.push(a)
+        }
+      })
+    }
+    return res
+  }
+
   function compact(ary) {
     return ary.filter(it => it)
   }
@@ -96,6 +114,7 @@ var wu_rui = function () {
     flip,
     before,
     chunk,
+    difference,
   }
 }()
 

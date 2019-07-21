@@ -134,6 +134,7 @@ var wu_rui = function () {
     chunk,
     difference,
     drop,
+    dropRight,
   }
 }()
 

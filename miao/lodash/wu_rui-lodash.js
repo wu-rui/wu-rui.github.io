@@ -18,6 +18,10 @@ var wu_rui = function () {
     return n == 0 ? array : array.slice(n)
   }
 
+  function dropRight(array, n = 1) {
+    return n == 0 ? array : array.slice(0, n)
+  }
+
   /**
    * 接受多个参数，第一个是需要判断的数组
    * 后面的所有参数，是用作对比的数组集

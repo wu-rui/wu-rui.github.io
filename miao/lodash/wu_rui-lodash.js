@@ -19,7 +19,8 @@ var wu_rui = function () {
   }
 
   function dropRight(array, n = 1) {
-    if (n == 0 || n >= array.length) return [];
+    if (n == 1) return array;
+    if (n >= array.length) return [];
     return array.slice(0, array.length - n)
   }
 

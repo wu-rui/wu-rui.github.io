@@ -24,6 +24,22 @@ var wu_rui = function () {
   }
 
   /**
+   * 
+   * @param {Array} ary 
+   * @param {Object} val 
+   * @param {Number} start 
+   * @param {Number} end
+   * 默认接受四个参数，分别是需要改造的数组 ，需要改变的值
+   * 后面的start和end选填 ，为需要改变的起始范围，不穿默认改变整个数组
+   */
+  function fill(ary, val, start = 0, end = ary.length) {
+    for (let i = start; i < end; i++) {
+      ary[i] = val
+    }
+    return ary;
+  }
+
+  /**
    * 接受多个参数，第一个是需要判断的数组
    * 后面的所有参数，是用作对比的数组集
    * 找出第一个数组与后面所有数组没有相同数据的数组返回
@@ -136,6 +152,7 @@ var wu_rui = function () {
     difference,
     drop,
     dropRight,
+    fill,
   }
 }()
 

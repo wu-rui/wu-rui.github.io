@@ -57,25 +57,26 @@ function divide(nums) {
   let left = nums.slice(0, n)
   let right = nums.slice(n)
   return concat(divide(left), divide(right))
-}
-
-function concat(left, right) {
-  let res = []
-  while (left.length && right.length) {
-    if (left[0] <= right[0]) {
+  function concat(left, right) {
+    let res = []
+    while (left.length && right.length) {
+      if (left[0] <= right[0]) {
+        res.push(left.shift())
+      } else {
+        res.push(right.shift())
+      }
+    }
+    while (left.length) {
       res.push(left.shift())
-    } else {
+    }
+    while (right.length) {
       res.push(right.shift())
     }
+    return res;
   }
-  while (left.length) {
-    res.push(left.shift())
-  }
-  while (right.length) {
-    res.push(right.shift())
-  }
-  return res;
 }
+
+
 
 
 

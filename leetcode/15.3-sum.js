@@ -72,11 +72,16 @@ var threeSum = function (nums) {
 
 var threeSum = function (nums) {
   let n = nums.length;
+  // 这里需要先把数组归并排序，
   nums = divide(nums)
   let res = []
+  // 和为0的特性是，除了0一定有正负，所以排序后遍历到0即可，
+  // 双指针，从当前值的右边一位left，和最右边right，正数的最大值来求和,
+  // 如果和小于0，说明负数多了，left右移，如果和大于0，说明正数大了，right左移
   for (let i = 0; nums[i] <= 0; i++) {
     let left = i + 1;
     let right = n - 1;
+    if (nums[right] < 0) return []
     if (i == 0 || (i > 0 && nums[i] !== nums[i - 1])) {
       while (left < right) {
         let sum = nums[i] + nums[left] + nums[right]
@@ -99,6 +104,11 @@ var threeSum = function (nums) {
   }
   return res;
 };
+/**
+ * 
+ * @param {array} nums
+ * 归并排序，练手用 
+ */
 function divide(nums) {
   let n = nums.length;
   if (n < 2) return nums;

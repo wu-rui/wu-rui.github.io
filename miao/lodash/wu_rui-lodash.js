@@ -24,6 +24,7 @@ var wu_rui = function () {
     for (let key in collection) {
       iteratee(collection[key], key, collection)
     }
+    return collection;
   }
 
   function dropRight(array, n = 1) {

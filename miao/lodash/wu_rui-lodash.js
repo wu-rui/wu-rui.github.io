@@ -22,8 +22,7 @@ var wu_rui = function () {
   function forEach(collection, iteratee = null) {
     if (iteratee == null) return collection;
     for (let key in collection) {
-      if (!iteratee(collection[key], key, collection)) break;
-      // break就是退出for循环
+      iteratee(collection[key], key, collection)
     }
   }
 

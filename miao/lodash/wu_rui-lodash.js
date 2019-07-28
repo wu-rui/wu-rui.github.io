@@ -18,6 +18,15 @@ var wu_rui = function () {
     return n == 0 ? array : array.slice(n)
   }
 
+
+  function forEach(collection, iteratee = null) {
+    if (iteratee == null) return collection;
+    for (let key in collection) {
+      if (!iteratee(collection[key], key, collection)) break;
+      // break就是退出for循环
+    }
+  }
+
   function dropRight(array, n = 1) {
     if (n >= array.length) return [];
     return array.slice(0, array.length - n)
@@ -37,6 +46,24 @@ var wu_rui = function () {
       ary[i] = val
     }
     return ary;
+  }
+
+
+  function map(array, iteratee = null) {
+    let idx = -1;
+    const length = array.length
+    if (!length) return []
+
+  }
+  function map(array, iteratee) {
+    let index = -1
+    const length = array == null ? 0 : array.length
+    const result = new Array(length)
+
+    while (++index < length) {
+      result[index] = iteratee(array[index], index, array)
+    }
+    return result
   }
 
   /**
@@ -153,6 +180,7 @@ var wu_rui = function () {
     drop,
     dropRight,
     fill,
+    forEach,
   }
 }()
 

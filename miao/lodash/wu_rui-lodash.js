@@ -84,7 +84,7 @@ var wu_rui = function () {
           break;
         case 'array':
           for (let v = 0; v < predicate.length; v++) {
-            if (predicate[v + 1]) {
+            if (predicate[v + 1] !== undefined) {
               if (val[predicate[v]] !== predicate[v + 1]) {
                 cur = false;
                 break;

@@ -56,7 +56,8 @@ var wu_rui = function () {
    * 从右往左遍历，需要去掉当遇到第一个false的时候的所有后面的数据，返回第一个false的位置的内容
    * @param {Array} array 
    * @param {Function/Object/Array/String} param1 
-   * 因为数组和对象是一样的遍历方式，所以不需要判断是否是数组
+   * 若传入对比对象，则对比对象中的每一个值是否在val中对应
+   * 若传入数组，则通过键值对对比，PS：测试用例看起来像是这个意思
    */
   function dropRightWhile(array, predicate = null) {
     if (predicate == null) return array;

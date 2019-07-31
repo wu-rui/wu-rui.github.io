@@ -578,5 +578,8 @@ var wu_rui = function () {
     dropWhile,
     findIndex,
     findLastIndex,
+    matches,
+    matchesProperty,
+    property,
   }
 }()

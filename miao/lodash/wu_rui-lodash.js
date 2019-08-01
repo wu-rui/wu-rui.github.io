@@ -574,9 +574,14 @@ var wu_rui = function () {
     return res;
   }
 
+  /**
+   * 判断是不是自有属性，应该用hasOwnPropoty判断
+   * @param {*} object 
+   * @param {*} path 
+   */
   function has(object, path) {
     let res = get(object, path, 'undefined')
-    if (res == 'undefined' || res == undefined || res == null) return false
+    if (res == 'undefined' || res == undefined || res == null || res == {}) return false
     return true;
   }
 

@@ -597,6 +597,24 @@ var wu_rui = function () {
     return [].concat(...ary)
   }
 
+
+  /**
+   * 将数组递归为一维数组
+   * @param {*} ary 
+   */
+  function flattenDeep(ary) {
+    let res = []
+    for (let val of ary) {
+      if (val instanceof Array) {
+        let cur = flattenDeep(val)
+        res = res.concat(cur)
+      } else {
+        res.push(val)
+      }
+    }
+    return res;
+  }
+
   return {
     compact,
     curry,
@@ -627,5 +645,6 @@ var wu_rui = function () {
     get,
     // has,
     flatten,
+    flattenDeep,
   }
 }()

@@ -739,6 +739,15 @@ var wu_rui = function () {
     return array[array.length - 1]
   }
 
+  /**
+   * 返回数组的第几个元素，接受负数
+   * @param {*} array 
+   * @param {*} n 
+   */
+  function nth(array, n = 0) {
+    return n < 0 ? array[array.length + n] : array[n - 1]
+  }
+
 
 
   return {
@@ -781,5 +790,6 @@ var wu_rui = function () {
     join,
     last,
     lastIndexOf,
+    nth。
   }
 }()

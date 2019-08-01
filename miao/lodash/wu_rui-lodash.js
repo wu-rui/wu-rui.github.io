@@ -745,7 +745,7 @@ var wu_rui = function () {
    * @param {*} n 
    */
   function nth(array, n = 0) {
-    return n < 0 ? array[array.length + n] : array[n - 1]
+    return n < 0 ? array[array.length + n] : array[n]
   }
 
 

@@ -714,6 +714,15 @@ var wu_rui = function () {
   }
 
 
+  /**
+   * 返回数组最后一个元素
+   * @param {*} array 
+   */
+  function last(array) {
+    return array[array.length - 1]
+  }
+
+
 
   return {
     compact,
@@ -753,5 +762,6 @@ var wu_rui = function () {
     initial,
     uniq,
     join,
+    last,
   }
 }()

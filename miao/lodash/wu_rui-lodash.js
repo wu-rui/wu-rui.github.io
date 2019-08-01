@@ -704,6 +704,16 @@ var wu_rui = function () {
   }
 
 
+  /**
+   * 将 array 中的所有元素转换为由 separator 分隔的字符串。
+   * @param {*} array 
+   * @param {*} param1 
+   */
+  function join(array, [separator = ',']) {
+    return array.toString().replace(/\,/g, separator)
+  }
+
+
 
   return {
     compact,
@@ -742,5 +752,6 @@ var wu_rui = function () {
     indexOf,
     initial,
     uniq,
+    join,
   }
 }()

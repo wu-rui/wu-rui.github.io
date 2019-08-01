@@ -588,6 +588,15 @@ var wu_rui = function () {
   //   return true;
   // }
 
+
+  /**
+   * 将数组，降低一个层级
+   * @param {Array} ary 
+   */
+  function flatten(ary) {
+    return [].concat(...ary)
+  }
+
   return {
     compact,
     curry,
@@ -617,5 +626,6 @@ var wu_rui = function () {
     property,
     get,
     // has,
+    flatten,
   }
 }()

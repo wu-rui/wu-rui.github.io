@@ -234,25 +234,21 @@ var wu_rui = function () {
    * @param {*} obj 
    * @returns {Function}
    */
-  // function matches(obj) {
-  //   return function (val) {
-  //     let res = true;
-  //     for (let v in obj) {
-  //       if (obj[v] !== val[v]) {
-  //         res = false;
-  //         break;
-  //       }
-  //     }
-  //     return res;
-  //   }
-  // }
-
-
   function matches(obj) {
     return function (val) {
-      return has(obj, val)
+      let res = true;
+      for (let v in obj) {
+        if (obj[v] !== val[v]) {
+          res = false;
+          break;
+        }
+      }
+      return res;
     }
   }
+
+
+
 
   /**
    * 当对比的数据中出现键值对的时候
@@ -586,11 +582,11 @@ var wu_rui = function () {
    * @param {*} object 
    * @param {*} path 
    */
-  function has(object, path) {
-    let res = get(object, path, 'undefined')
-    if (res == 'undefined' || res == undefined || res == null || res == {}) return false
-    return true;
-  }
+  // function has(object, path) {
+  //   let res = get(object, path, 'undefined')
+  //   if (res == 'undefined' || res == undefined || res == null || res == {}) return false
+  //   return true;
+  // }
 
   return {
     compact,
@@ -620,6 +616,6 @@ var wu_rui = function () {
     matchesProperty,
     property,
     get,
-    has,
+    // has,
   }
 }()

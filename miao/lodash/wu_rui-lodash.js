@@ -790,6 +790,6 @@ var wu_rui = function () {
     join,
     last,
     lastIndexOf,
-    nth。
+    nth,
   }
 }()

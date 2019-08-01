@@ -690,6 +690,20 @@ var wu_rui = function () {
   }
 
 
+  // 数组去重
+  function uniq(array) {
+    let data = {}
+    let res = []
+    for (let val of array) {
+      if (!(data[val])) {
+        res.push(val)
+        data[val] = val;
+      }
+    }
+    return res;
+  }
+
+
 
   return {
     compact,
@@ -727,5 +741,6 @@ var wu_rui = function () {
     head,
     indexOf,
     initial,
+    uniq,
   }
 }()

@@ -554,6 +554,20 @@ var wu_rui = function () {
     return res;
   }
 
+  function get(object, path, defaultValue = null) {
+    let res = null;
+    // path有两种情况，字符串和数组,字符串需要切割为数组
+    if (typeof path == 'string') {
+      path = path.split(/(?:\[|(?:\]\[)|\.|(?:\]\.)|\])/)
+    }
+    for (let i of path) {
+      if (object == undefined) break;
+      res = object = object[i]
+    }
+    if (res == null && defaultValue != null) return defaultValue;
+    return res;
+  }
+
   return {
     compact,
     curry,
@@ -581,5 +595,6 @@ var wu_rui = function () {
     matches,
     matchesProperty,
     property,
+    get,
   }
 }()

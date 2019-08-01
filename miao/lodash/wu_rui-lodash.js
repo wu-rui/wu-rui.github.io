@@ -709,7 +709,7 @@ var wu_rui = function () {
    * @param {*} array 
    * @param {*} param1 
    */
-  function join(array, [separator = ',']) {
+  function join(array, separator = ',') {
     return array.toString().replace(/\,/g, separator)
   }
 

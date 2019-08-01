@@ -680,6 +680,23 @@ var wu_rui = function () {
 
 
   /**
+   * 返回从formindex的下标从后往前开始找第一个是value的数据的下标
+   * @param {*} array 
+   * @param {*} value 
+   * @param {*} fromIndex 
+   */
+  function lastIndexOf(array, value, fromIndex = array.length - 1) {
+    let i = fromIndex;
+    for (i; i > -1; i--) {
+      if (array[i] == value) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+
+  /**
    * 去掉数组的最后一个元素
    * @param {*} ary 
    */
@@ -763,5 +780,6 @@ var wu_rui = function () {
     uniq,
     join,
     last,
+    lastIndexOf,
   }
 }()

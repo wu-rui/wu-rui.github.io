@@ -554,6 +554,12 @@ var wu_rui = function () {
     return res;
   }
 
+  /**
+   * get是用于判断，object对象中，是否有ptah这样的属性路径，并且返回其值
+   * @param {Object} object 
+   * @param {Array/String} path 
+   * @param {*} defaultValue 
+   */
   function get(object, path, defaultValue = null) {
     let res = null;
     // path有两种情况，字符串和数组,字符串需要切割为数组
@@ -570,7 +576,7 @@ var wu_rui = function () {
 
   function has(object, path) {
     let res = get(object, path, 'undefined')
-    if (res == 'undefined' || res == undefined) return false
+    if (res == 'undefined' || res == undefined || res == null) return false
     return true;
   }
 

@@ -568,6 +568,12 @@ var wu_rui = function () {
     return res;
   }
 
+  function has(object, path) {
+    let res = get(object, path, 'undefined')
+    if (res == 'undefined' || res == undefined) return false
+    return true;
+  }
+
   return {
     compact,
     curry,
@@ -596,5 +602,6 @@ var wu_rui = function () {
     matchesProperty,
     property,
     get,
+    has,
   }
 }()

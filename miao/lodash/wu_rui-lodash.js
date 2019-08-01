@@ -651,6 +651,45 @@ var wu_rui = function () {
   }
 
 
+  /**
+   * 返回数组的第一个元素
+   * 这种题...干嘛用？
+   * @param {Array} ary 
+   */
+  function head(ary) {
+    return ary[0]
+  }
+
+
+
+  /**
+   * 返回从formindex的下标开始找第一个是value的数据的下标
+   * @param {*} array 
+   * @param {*} value 
+   * @param {*} fromIndex 
+   */
+  function indexOf(array, value, fromIndex = 0) {
+    let i = fromIndex;
+    for (i; i < array.length; i++) {
+      if (array[i] == value) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+
+  /**
+   * 去掉数组的最后一个元素
+   * @param {*} ary 
+   */
+  function initial(ary) {
+    ary.pop()
+    return ary;
+    // return ary.slice(0, ary.length - 1)
+  }
+
+
 
   return {
     compact,
@@ -685,5 +724,8 @@ var wu_rui = function () {
     flattenDeep,
     flattenDepth,
     fromPairs,
+    head,
+    indexOf,
+    initial,
   }
 }()

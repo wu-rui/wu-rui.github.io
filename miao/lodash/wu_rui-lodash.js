@@ -749,8 +749,20 @@ var wu_rui = function () {
   }
 
 
+  /**
+   * 移除数组array中所有和给定值相等的元素，进行全等比较。 
+   * 这个是改变原数组的函数，而不是返回新的函数
+   */
+
+  function pull(array, ...values) {
+    let res = []
+    array.map(it => values.indexOf(it) == -1 ? res.push(it) : '')
+    return array = res;
+  }
+
 
   return {
+    pull,
     compact,
     curry,
     spread,

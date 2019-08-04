@@ -760,8 +760,25 @@ var wu_rui = function () {
     return array = res;
   }
 
+  /**
+   * 和pull类似，但是只接受两个参数
+   * 第二个需要对比的参数为一个数组
+   *  [1, 2, 3, 1, 2, 3]&[2,3]=>[1,1]
+   * 严谨做法
+   */
+  function pullAll(array, values) {
+    let n = array.length;
+    for (let i = 0; i < n; i++) {
+      // 如果包含的话
+      if (values.includes(array[i])) {
+        array.splice(i--, 1)
+      }
+    }
+    return array;
+  }
 
   return {
+    pullAll,
     pull,
     compact,
     curry,

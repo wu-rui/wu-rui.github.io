@@ -824,7 +824,39 @@ var wu_rui = function () {
     return true;
   }
 
+
+  /**
+   * 判断两个对象是否完全相等
+   * @param {*} obj1 
+   * @param {*} obj2 
+   * @test isEqual({},{}) =>true
+   * @test isEqual([1],[2]) =>false
+   * @test isEqual({'a':1,'b':2},{'b'：2}) =>true
+   */
+  function isEqual(obj1, obj2) {
+    if (obj1 === obj2) return true;
+    if (typeof obj1 === typeof obj2) {
+      for (let i in obj1) {
+        if (typeof obj1[i] == 'object' && typeof obj2[i] == 'object') {
+          if (!isEqual(obj1[i], obj2[i])) return false;
+        } else {
+          if (obj1[i] !== obj2[i]) return false
+        }
+      }
+      for (let i in obj2) {
+        if (typeof obj1[i] == 'object' && typeof obj2[i] == 'object') {
+          if (!isEqual(obj1[i], obj2[i])) return false;
+        } else {
+          if (obj1[i] !== obj2[i]) return false
+        }
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
   return {
+    isEqual,
     isMatch,
     pullAll,
     pull,

@@ -860,6 +860,24 @@ var wu_rui = function () {
     }
   }
 
+
+  /**
+   * 判断path表示的属性路径是否是object的自有属性
+   * @param {Object} object 
+   * @param {String/Array} path 
+   */
+  function has(object, path) {
+    path = toPath(path)
+    for (let val of path) {
+      if (!object.hasOwnProperty(val)) {
+        return false;
+      } else {
+        object = object[val]
+      }
+    }
+    return true;
+  }
+
   return {
     isEqual,
     isMatch,
@@ -892,7 +910,7 @@ var wu_rui = function () {
     matchesProperty,
     property,
     get,
-    // has,
+    has,
     flatten,
     flattenDeep,
     flattenDepth,

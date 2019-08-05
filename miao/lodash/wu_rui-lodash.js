@@ -790,7 +790,37 @@ var wu_rui = function () {
     return res;
   }
 
+  /**
+   * @function isMatch 
+   * 此函数用于对象之间的深度对比,即为：【object是否含有和source【完全】一样的属性值】
+   * @param {Object} object 需要判断的对象
+   * @param {Object} source 需要进行对比的对象
+   * @returns {boolean} true|false
+   * @test isMatch({ 'a': 1, 'b': 2 }, { 'b': 2 })=>true
+   * @test isMatch({ 'a': 1, 'b': 2 }, { 'b': 1 })=>false
+   * @test isMatch({ 'a': 1, 'b': {'c':'wurui','d':[1,2,3,4]}}, { 'b': {'c':'wurui','d':[1,2,3]}})=>true
+   * 上面一个测试用例返回true，是因为后面的所有属性及其值，前面都有
+   * @test isMatch({ 'a': 1, 'b': {'c':'wurui','d':[1,2,3,4]} }, { 'b': {'c':'wurui','d':[1,2,3,5]}})=>false
+   * 这个测试用例的结果为false是因为，后面的d5，不被包含在前面的对象里面
+   * !!! 注意不是等价关系，而是包含关系，相等也是包含的一种情况
+   */
+  function isMatch(object, source) {
+    // 若是两个对象完全相等，那么就直接返回true
+    if (object === source) return true
+    for (let i in source) {
+      // 需要判断值是否为对象，若是对象递归调用该函数
+      if (typeof source[i] == 'object' && source[i] !== null) {
+        if (!isMatch(object[i], source[i])) return false;
+      } else {
+        // 不是对象直接判断是否相等
+        if (object[i] !== source[i]) return false;
+      }
+    }
+    return true;
+  }
+
   return {
+    isMatch,
     pullAll,
     pull,
     compact,

@@ -862,6 +862,16 @@ var wu_rui = function () {
 
 
   /**
+   * 转化 字符串 为属性路径的数组 。
+   * toPath('a.b.c')=> ['a', 'b', 'c']
+   * toPath('a[0].b.c')=> ['a', '0', 'b', 'c']
+   * @param {String} str 
+   */
+  function toPath(str) {//a.b.0.c[fooo][bar].d
+    return typeof str == 'string' ? str.split(/\.|\[|\]./g) : str;
+  }
+
+  /**
    * 判断path表示的属性路径是否是object的自有属性
    * @param {Object} object 
    * @param {String/Array} path 

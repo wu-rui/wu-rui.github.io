@@ -836,25 +836,30 @@ var wu_rui = function () {
   function isEqual(obj1, obj2) {
     if (obj1 === obj2) return true;
     if (typeof obj1 === typeof obj2) {
-      for (let i in obj1) {
-        if (typeof obj1[i] == 'object' && typeof obj2[i] == 'object') {
-          if (!isEqual(obj1[i], obj2[i])) return false;
-        } else {
-          if (obj1[i] !== obj2[i]) return false
+      if (typeof obj1 == 'object' && typeof obj2 == 'object') {
+        for (let i in obj1) {
+          if (typeof obj1[i] == 'object' && typeof obj2[i] == 'object') {
+            if (!isEqual(obj1[i], obj2[i])) return false;
+          } else {
+            if (obj1[i] !== obj2[i]) return false
+          }
         }
-      }
-      for (let i in obj2) {
-        if (typeof obj1[i] == 'object' && typeof obj2[i] == 'object') {
-          if (!isEqual(obj1[i], obj2[i])) return false;
-        } else {
-          if (obj1[i] !== obj2[i]) return false
+        for (let i in obj2) {
+          if (typeof obj1[i] == 'object' && typeof obj2[i] == 'object') {
+            if (!isEqual(obj1[i], obj2[i])) return false;
+          } else {
+            if (obj1[i] !== obj2[i]) return false
+          }
         }
+        return true;
+      } else {
+        return obj1 === obj2;
       }
-      return true;
     } else {
       return false;
     }
   }
+
   return {
     isEqual,
     isMatch,

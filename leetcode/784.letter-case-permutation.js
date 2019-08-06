@@ -40,7 +40,8 @@
 /**
  * @param {string} S
  * @return {string[]}
- */
+ * 愚蠢的写法
+
 var letterCasePermutation = function (S) {
   let res = []
   let data = {}
@@ -72,5 +73,22 @@ var letterCasePermutation = function (S) {
   }
   getStr(S, 0)
   return res;
+};
+ */
+
+
+var letterCasePermutation = function (S, str = '', result = [], i = 0) {
+  if (str.length == S.length) {
+    result.push(str)
+    return;
+  }
+  let cur = S[i]
+  if (/[0-9]/.test(cur)) {
+    letterCasePermutation(S, str + cur, result, i + 1)
+  } else {
+    letterCasePermutation(S, str + cur.toLocaleLowerCase(), result, i + 1)
+    letterCasePermutation(S, str + cur.toLocaleUpperCase(), result, i + 1)
+  }
+  return result;
 };
 

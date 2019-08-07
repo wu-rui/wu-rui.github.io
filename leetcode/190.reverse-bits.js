@@ -62,14 +62,12 @@
  * @return {number} - a positive integer
  */
 var reverseBits = function (n) {
-  let result = 0;
-  for (let i = 0; i <= 32; i++) {
-    let tmp = n >> i;
-    tmp = tmp & 1;
-    tmp = tmp << (31 - i);
-    result |= tmp;
+  let res = 0;
+  for (let i = 0; i < 32; i++) {
+    res = (res << 1) + (n & 1);
+    n = n >>> 1;
   }
-  return result;
+  return res >>> 0;
 };
 
 

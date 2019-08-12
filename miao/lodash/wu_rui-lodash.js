@@ -692,10 +692,13 @@ var wu_rui = function () {
     for (i; i > -1; i--) {
       if (array[i] == value) {
         return i;
+      } else if (array[i] !== value && value !== value) {
+        return i;
       }
     }
     return -1;
   }
+
 
 
   /**
@@ -886,6 +889,13 @@ var wu_rui = function () {
       }
     }
     return true;
+  }
+
+
+  function wrap() {
+    return function (...args) {
+      return wrapper(f, ...args)
+    }
   }
 
   return {

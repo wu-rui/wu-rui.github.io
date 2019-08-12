@@ -675,6 +675,8 @@ var wu_rui = function () {
     for (i; i < array.length; i++) {
       if (array[i] == value) {
         return i;
+      } else if (array[i] !== value && array[i] !== array[i] && value !== value) {
+        return i;
       }
     }
     return -1;
@@ -692,7 +694,7 @@ var wu_rui = function () {
     for (i; i > -1; i--) {
       if (array[i] == value) {
         return i;
-      } else if (array[i] !== value && value !== value) {
+      } else if (array[i] !== value && array[i] !== array[i] && value !== value) {
         return i;
       }
     }

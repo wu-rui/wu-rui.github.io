@@ -63,3 +63,27 @@ var uniquePaths = function (m, n) {
   return memo[n - 1];
 }
 
+/**
+ * 一定超时的回溯算法
+ * @param {*} m 
+ * @param {*} n 
+ */
+var uniquePaths = function (m, n) {
+  let count = 0;
+  let data = []
+  function getThere(x, y) {
+    if (x == m && y == n) {
+      count++;
+      return;
+    }
+    if (x < m) {
+      getThere(x + 1, y)
+    }
+    if (y < n) {
+      getThere(x, y + 1)
+    }
+  }
+  getThere(1, 1)
+  return count;
+};
+

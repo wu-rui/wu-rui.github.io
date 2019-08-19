@@ -89,7 +89,6 @@
  * 复杂但是好写的
  */
 var simplifyPath = function (path) {
-  if (path[0] !== '/') return ''
   path = path.split('/')
   let map = path.reduce((ary, it) => {
     if (it == '' || it == '.' || it == '..') {

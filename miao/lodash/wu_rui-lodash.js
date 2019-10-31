@@ -30,9 +30,7 @@ var wu_rui = function () {
   // 深拷贝,深拷贝的要点是，克隆出来的数据可以随意修改不会改变原本被克隆的值
   function cloneDeep(value) {
     // 如果不是引用对象就直接返回，注意排查正则，typeof的时候也是object
-    if (typeof value !== 'object' || value instanceof RegExp) {
-      return value
-    }
+    if (typeof value !== 'object' || value instanceof RegExp) return value
     let res = value instanceof Array ? [] : {}
     for (let prop in value) {
       // 是复杂类型并且不是null
@@ -65,7 +63,7 @@ var wu_rui = function () {
     return typeof value === 'function'
   }
   function isNaN(value) {
-    return value.toString() === 'NaN'
+    return value !== undefined && value.toString() === 'NaN'
   }
   function isEmpty(value) {
     for (let i in value) {

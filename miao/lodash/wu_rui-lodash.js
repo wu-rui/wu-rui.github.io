@@ -11,8 +11,30 @@ var wu_rui = function () {
     i < ary.length && res.push(ary.slice(i, ary.length))
     return res;
   }
-
+  function clone(value) {
+    var dst = {};
+    for (var prop in value) {
+      if (value.hasOwnProperty(prop)) {
+        dst[prop] = value[prop];
+      }
+    }
+    return dst;
+  }
+  function cloneDeep(value) {
+    let res = value instanceof Array ? [] : {}
+    for (let prop in value) {
+      // 是复杂类型并且不是null
+      if (typeof value[prop] === 'object' && value[prop] !== null) {
+        res[prop] = cloneDeep(value[prop])
+      } else {
+        res[prop] = value[prop]
+      }
+    }
+    return res;
+  }
   return {
     chunk,
+    clone,
+    cloneDeep
   }
 }()

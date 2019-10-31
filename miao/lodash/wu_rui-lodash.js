@@ -69,7 +69,12 @@ var wu_rui = function () {
     chunk,
     clone,
     cloneDeep,
-    compact
+    compact,
+    isArgument,
+    isArray,
+    isBoolean,
+    isDate,
+    isEmpty,
   }
 
 }()

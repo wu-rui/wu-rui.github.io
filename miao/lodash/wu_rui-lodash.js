@@ -70,17 +70,17 @@ var wu_rui = function () {
    * @param {*} b 
    * 重点注意,相等可以不全等，但是结构和数据一模一样
    * 遍历的时候还有中复杂的情况是包含关系，数据值对比都一样但是b比a多
+   * isEqual({"a":[1,2,3]},{"a":[1,2,3]})
    */
   function isEqual(a, b) {
-    if (a === b) return true
+    if (a === b) return true //全等直接返回
     let typeA = Object.prototype.toString.call(a)
     let typeB = Object.prototype.toString.call(b)
-    if (typeA !== typeB) return false
-    if (typeof a !== 'object' && a !== b) return false
-    if (mapObject(a).length !== mapObject(b).length) return false
+    if (typeA !== typeB) return false //严格类型不一样直接返回false
+    if (typeof a !== 'object' && a !== b) return false // 如果是同样的原始类型但是数值不一样
+    if (mapObject(a).length !== mapObject(b).length) return false //如果属性值个数不一样
     for (let i in a) {
-      if (a[i] != b[i]) return false
-      if (!isEqual(a[i], b[i])) return false
+      if (!isEqual(a[i], b[i])) return false //深对比的时候，不匹配
     }
     return true
   }

@@ -21,6 +21,10 @@ var wu_rui = function () {
     return dst;
   }
   function cloneDeep(value) {
+    // 如果不是引用对象就直接返回
+    if (typeof value !== 'object') {
+      return value
+    }
     let res = value instanceof Array ? [] : {}
     for (let prop in value) {
       // 是复杂类型并且不是null

@@ -58,6 +58,15 @@ var wu_rui = function () {
   function isDate(value) {
     return Object.prototype.toString.call(value) === '[object Date]'
   }
+  function isError(value) {
+    return Object.prototype.toString.call(value) === '[object Error]'
+  }
+  function isFunction(value) {
+    return typeof value === 'function'
+  }
+  function isNaN(value) {
+    return value.toString() === 'NaN'
+  }
   function isEmpty(value) {
     for (let i in value) {
       return false
@@ -108,6 +117,9 @@ var wu_rui = function () {
     isDate,
     isEmpty,
     isEqual,
+    isError,
+    isFunction,
+    isNaN,
   }
 
 }()

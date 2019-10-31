@@ -76,6 +76,7 @@ var wu_rui = function () {
     let typeA = Object.prototype.toString.call(a)
     let typeB = Object.prototype.toString.call(b)
     if (typeA !== typeB) return false
+    if (typeof a !== 'object' && a !== b) return false
     if (mapObject(a).length !== mapObject(b).length) return false
     for (let i in a) {
       if (a[i] != b[i]) return false

@@ -45,10 +45,10 @@ var wu_rui = function () {
     return res;
   }
 
+  //基本数据类型判断
   function isArgument(value) {
     return Object.prototype.toString.call(value) === '[object Argument]'
   }
-
   function isArray(value) {
     return Object.prototype.toString.call(value) === '[object Array]'
   }
@@ -56,13 +56,44 @@ var wu_rui = function () {
     return Object.prototype.toString.call(value) === '[object Boolean]'
   }
   function isDate(value) {
-    return Object.prototype.toString.call(value) === '[object isDate]'
+    return Object.prototype.toString.call(value) === '[object Date]'
   }
   function isEmpty(value) {
     for (let i in value) {
       return false
     }
     return true
+  }
+  /**
+   * 判断两个数据类型是否完全相等
+   * @param {*} a 
+   * @param {*} b 
+   * 重点注意,相等可以不全等，但是结构和数据一模一样
+   * 遍历的时候还有中复杂的情况是包含关系，数据值对比都一样但是b比a多
+   */
+  function isEqual(a, b) {
+    if (a === b) return true
+    let typeA = Object.prototype.toString.call(a)
+    let typeB = Object.prototype.toString.call(b)
+    if (typeA !== typeB) return false
+    if (mapObject(a).length !== mapObject(b).length) return false
+    for (let i in a) {
+      if (a[i] != b[i]) return false
+      if (!isEqual(a[i], b[i])) return false
+    }
+    return true
+  }
+  // 遍历对象的所有属性返回一个数组
+  function mapObject(val) {
+    let res = []
+    for (let i in val) {
+      if (typeof val[i] === 'object') {
+        res.push(...mapObject(val[i]))
+      } else {
+        res.push(i)
+      }
+    }
+    return res;
   }
 
   return {
@@ -75,6 +106,7 @@ var wu_rui = function () {
     isBoolean,
     isDate,
     isEmpty,
+    isEqual,
   }
 
 }()

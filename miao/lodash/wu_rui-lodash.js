@@ -21,8 +21,8 @@ var wu_rui = function () {
     return dst;
   }
   function cloneDeep(value) {
-    // 如果不是引用对象就直接返回
-    if (typeof value !== 'object') {
+    // 如果不是引用对象就直接返回，注意排查正则，typeof的时候也是object
+    if (typeof value !== 'object' || value instanceof RegExp) {
       return value
     }
     let res = value instanceof Array ? [] : {}

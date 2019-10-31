@@ -46,7 +46,7 @@ var wu_rui = function () {
   }
 
   //基本数据类型判断
-  function isArgument(value) {
+  function isArguments(value) {
     return Object.prototype.toString.call(value) === '[object Argument]'
   }
   function isArray(value) {
@@ -102,7 +102,7 @@ var wu_rui = function () {
     clone,
     cloneDeep,
     compact,
-    isArgument,
+    isArguments,
     isArray,
     isBoolean,
     isDate,

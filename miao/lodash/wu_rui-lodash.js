@@ -1,5 +1,6 @@
 var wu_rui = function () {
 
+  //数组分割，不改变原数组
   function chunk(ary, size = 1) {
     let res = [];
     let i = 0;
@@ -11,6 +12,11 @@ var wu_rui = function () {
     i < ary.length && res.push(ary.slice(i, ary.length))
     return res;
   }
+  function compact(array) {
+    return array.filter(it => it)
+  }
+
+  // 浅拷贝
   function clone(value) {
     var dst = {};
     for (var prop in value) {
@@ -20,6 +26,8 @@ var wu_rui = function () {
     }
     return dst;
   }
+
+  // 深拷贝,深拷贝的要点是，克隆出来的数据可以随意修改不会改变原本被克隆的值
   function cloneDeep(value) {
     // 如果不是引用对象就直接返回，注意排查正则，typeof的时候也是object
     if (typeof value !== 'object' || value instanceof RegExp) {
@@ -36,9 +44,32 @@ var wu_rui = function () {
     }
     return res;
   }
+
+  function isArgument(value) {
+    return Object.prototype.toString.call(value) === '[object Argument]'
+  }
+
+  function isArray(value) {
+    return Object.prototype.toString.call(value) === '[object Array]'
+  }
+  function isBoolean(value) {
+    return Object.prototype.toString.call(value) === '[object Boolean]'
+  }
+  function isDate(value) {
+    return Object.prototype.toString.call(value) === '[object isDate]'
+  }
+  function isEmpty(value) {
+    for (let i in value) {
+      return false
+    }
+    return true
+  }
+
   return {
     chunk,
     clone,
-    cloneDeep
+    cloneDeep,
+    compact
   }
+
 }()

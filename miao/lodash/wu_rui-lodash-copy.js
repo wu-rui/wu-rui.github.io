@@ -264,15 +264,9 @@ var wu_rui = function () {
    * @param {String} str 
    * @param {Object} val 
    */
-  function property(str) {
-    return function (val) {
-      if (typeof str == 'string') {
-        str = str.split('.');
-      }
-      for (let i of str) {
-        val = val[i]
-      }
-      return !(val === false || val == undefined);
+  function property(prop) {
+    return (obj) => {
+      return obj[prop]
     }
   }
 

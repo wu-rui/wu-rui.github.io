@@ -16,6 +16,143 @@ var wu_rui = function () {
     return array.filter(it => it)
   }
 
+
+  /**
+   * 返回数组1，但是数组1的数据不能和后面的所有参数的数据有任何一个的重合，
+   * 这就是就是difference，需要返回一个新的数组
+   * @param {*} ary1 需要处理的数组
+   * @param {*} args 需要对比的数组集合
+   */
+  function difference(ary1, ...args) {
+    if (ary1.length === 0) return [];
+    if (args.length === 0) return ary1;
+    //这句话是数组降维，其实应该写一个多重降维函数
+    args = ArraytoArray(args);
+    return ary1.reduce((cur, it) => {
+      if (!args.includes(it)) {
+        cur.push(it)
+      }
+      return cur;
+    }, [])
+  }
+
+  /**
+   * 这个方法类似 _.difference ，除了它接受一个 iteratee （迭代器）， 
+   * 调用array 和 values 中的每个元素以产生比较的标准。 
+   * 结果值是从第一数组中选择。iteratee 会调用一个参数：(value)。
+   * （首先使用迭代器分别迭代array 和 values中的每个元素，返回的值作为比较值）。 
+   * @param {*} ary 
+   * @param  {...any} rest 
+   */
+  function differenceBy(ary, ...rest) {
+    let iter = null
+    let res = []
+    if (rest.length >= 2 && !rest[rest.length] instanceof Array) {
+      // 如果最后一个不是数组，那么就是迭代器
+      iter = rest.pop()
+    }
+    rest = ArraytoArray(rest);//数组多重降维
+    // 使用构造器返回一个函数
+    if (iter !== null) {
+      let getValue = iteratee(iter)
+      any.forEach((it, idx) => {
+        if (rest[idx]) {
+          if (getValue(it) !== getValue(rest[idx])) {
+            res.push(it)
+          }
+        } else {
+          res.push(it)
+        }
+      })
+    }
+    return res;
+  }
+
+  /**
+   * 数组多重降维
+   * @param {} array 
+   */
+  function ArraytoArray(array) {
+    let res = []
+    array.forEach((it) => {
+      if (it instanceof Array) {
+        res.push(...ArraytoArray(it))
+      } else {
+        res.push(it)
+      }
+    })
+    return res;
+  }
+
+  //迭代器
+  function iteratee(any) {
+    // 是字符串就是返回一个属性值
+    if (typeof any === 'string') {
+      return property(any)
+    }
+    // 是函数直接返回函数返回该函数
+    else if (typeof any === 'funcion') {
+      return val => any(val)
+
+    }
+    // 是数组世界返回匹配数组的函数 
+    else if (any instanceof Array) {
+      return matchesProperty(any)
+    }
+    // 是对象就直接返回匹配对象的函数 
+    else if (typeof any === 'object') {
+      return matches(any)
+    }
+  }
+  /**
+   * 判断给定的字符串中的每一个属性对应到val数据中，是否为true
+   * 返回true，false
+   * @param {String} str 
+   * @param {Object} val 
+   */
+  function property(str) {
+    return function (val) {
+      if (typeof str == 'string') {
+        str = str.split('.');
+      }
+      for (let i of str) {
+        val = val[i]
+      }
+      return !(val === false || val == undefined);
+    }
+  }
+
+
+  /**
+   * 当对比的数据中出现键值对的时候
+   * 需要对比数据是否符合key，val
+   * 返回true，false
+   * @param {} key 
+   * @param {*} val 
+   * @param {*} data 
+   */
+  function matchesProperty(key, val) {
+    return function (data) {
+      return data[key] == val
+    }
+  }
+
+
+  /**
+ * 对比val和obj是否相同，返回一个函数
+ * @param {*} obj 
+ * @returns {Function}
+ */
+  function matches(source) {
+    return function (obj) {
+      return isMatch(obj, source)
+    }
+  }
+
+
+
+  // =========================================
+
   // 浅拷贝
   function clone(value) {
     var dst = {};
@@ -42,6 +179,10 @@ var wu_rui = function () {
     }
     return res;
   }
+  // ================================
+
+
+
 
   //基本数据类型判断
   function isArguments(value) {
@@ -111,7 +252,6 @@ var wu_rui = function () {
     return true
   }
 
-
   /**
    * @function isMatch 
    * 此函数用于对象之间的深度对比,即为：【object是否含有和source【完全】一样的属性值】
@@ -152,12 +292,17 @@ var wu_rui = function () {
     }
     return res;
   }
+  // ===================================
+
+
+
 
   return {
     chunk,
     clone,
     cloneDeep,
     compact,
+    // 基本数据类型判断
     isArguments,
     isArray,
     isBoolean,
@@ -174,6 +319,7 @@ var wu_rui = function () {
     isRegExp,
     isString,
     isUndefined,
+    // =========
   }
 
 }()

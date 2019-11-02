@@ -234,18 +234,6 @@ var wu_rui = function () {
    * @param {*} obj 
    * @returns {Function}
    */
-  // function matches(obj) {
-  //   return function (val) {
-  //     let res = true;
-  //     for (let v in obj) {
-  //       if (obj[v] !== val[v]) {
-  //         res = false;
-  //         break;
-  //       }
-  //     }
-  //     return res;
-  //   }
-  // }
   function matches(source) {
     return function (obj) {
       return isMatch(obj, source)

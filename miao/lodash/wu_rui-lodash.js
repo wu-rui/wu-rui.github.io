@@ -302,6 +302,13 @@ var wu_rui = function () {
     clone,
     cloneDeep,
     compact,
+    difference,
+    differenceBy,
+    ArraytoArray,
+    iteratee,
+    property,
+    matchesProperty,
+    matches,
     // 基本数据类型判断
     isArguments,
     isArray,

@@ -64,6 +64,8 @@ var wu_rui = function () {
           res.push(it)
         }
       })
+    } else {
+      return difference(ary, rest)
     }
     return res;
   }

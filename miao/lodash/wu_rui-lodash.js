@@ -55,7 +55,7 @@ var wu_rui = function () {
     // 使用构造器返回一个函数
     if (iter !== null) {
       let getValue = iteratee(iter)
-      any.forEach((it, idx) => {
+      ary.forEach((it, idx) => {
         if (rest[idx]) {
           if (getValue(it) !== getValue(rest[idx])) {
             res.push(it)

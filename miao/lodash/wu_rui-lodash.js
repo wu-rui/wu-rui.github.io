@@ -46,7 +46,7 @@ var wu_rui = function () {
    */
   function differenceBy(ary, ...rest) {
     let iter = null
-    if (rest.length >= 2 && !rest[rest.length] instanceof Array) {
+    if (rest.length >= 2 && !(rest[rest.length - 1] instanceof Array)) {
       // 如果最后一个不是数组，那么就是迭代器
       iter = rest.pop()
     }
@@ -54,9 +54,14 @@ var wu_rui = function () {
     // 使用构造器返回一个函数
     if (iter !== null) {
       let getValue = iteratee(iter)
-      ary.map(it => getValue(it))
-      rest.map(it => getValue(it))
+      ary.map(it => {
+        return getValue(it)
+      })
+      rest.map(it => {
+        return getValue(it)
+      })
     }
+
     return difference(ary, rest)
   }
 

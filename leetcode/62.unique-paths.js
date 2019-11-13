@@ -2,7 +2,7 @@
  * @lc app=leetcode id=62 lang=javascript
  *
  * [62] Unique Paths
- *
+ * 
  * https://leetcode.com/problems/unique-paths/description/
  *
  * algorithms
